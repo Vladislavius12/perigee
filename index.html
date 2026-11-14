@@ -94,21 +94,48 @@ button {
 }
 button:focus-visible { outline: 2px solid var(--paper); outline-offset: 2px; }
 #end { background: rgba(5, 5, 10, .32); }
-#actions { position: absolute; left: 50%; bottom: calc(var(--bottom) + 8px); transform: translateX(-50%); width: min(70vw, 260px); display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
-#actions button { display: none; margin: 0; pointer-events: auto; font-size: 24px; padding: 10px; }
-#actions button.on { display: block; }
-#actions #build { background: #5fe07a; }
-#actions #talk { background: var(--paper); }
 #toast.ru { font: 700 22px/1.2 Nunito, system-ui, sans-serif; }
 #cineUi { position: absolute; inset: 0; display: none; pointer-events: none; }
 #cineUi.on { display: block; }
 #caption { position: absolute; left: var(--side); right: var(--side); bottom: calc(var(--bottom) + 24px); text-align: center; font: 700 20px/1.3 Nunito, system-ui, sans-serif; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.95); text-wrap: balance; }
 #skip { position: absolute; right: var(--side); top: var(--top); width: auto; margin: 0; padding: 6px 12px; font-size: 18px; background: rgba(233,226,207,.2); color: var(--paper); pointer-events: auto; }
-#actions #sos { background: var(--signal); }
-#actions #capture { background: var(--amber); }
-#actions #dock { background: var(--air); }
-#actions #courier { background: #ee8a3a; }
-#actions #loot { background: #b4bcbf; }
+#actions { position: absolute; left: var(--side); right: var(--side); bottom: calc(var(--bottom) + 6px); max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+.act { --btnbg: rgba(20, 34, 63, .94); display: none; align-items: center; gap: 14px; width: 100%; margin: 0; padding: 11px 18px; min-height: 62px; border-radius: 22px; border: 2px solid #8fc3ee; background: var(--btnbg); color: #eef4ff; font: 700 22px/1.15 Nunito, system-ui, sans-serif; text-transform: none; letter-spacing: 0; text-align: left; pointer-events: auto; box-shadow: 0 6px 18px rgba(0, 0, 0, .35); }
+#actions .act.on, #mapPanel .act { display: flex; }
+.act.fill { --btnbg: #5eeab0; border-color: transparent; color: #0c1733; }
+.act.warn { --btnbg: #ff6a4a; border-color: transparent; color: #0c1733; }
+.act.gold { --btnbg: #f2b632; border-color: transparent; color: #0c1733; }
+.act .ico { width: 38px; height: 38px; flex: none; fill: currentColor; }
+.act .ico .cut { fill: var(--btnbg); }
+.act .lbl { flex: 1; }
+.act .cnt { background: #0c1733; color: #fff; border-radius: 12px; padding: 5px 13px; font-size: 21px; }
+.act .cnt:empty { display: none; }
+.act:disabled { opacity: .45; }
+#map { position: absolute; inset: 0; display: none; background: #03050c; touch-action: none; }
+#map.on { display: block; }
+#mapC { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mapTop { position: absolute; left: var(--side); right: var(--side); top: var(--top); pointer-events: none; }
+.mapTop h3 { margin: 0; font: 700 24px/1.1 Nunito, system-ui, sans-serif; color: #fff; }
+.mapTop p { margin: 4px 0 0; font: 400 14px/1.3 Nunito, system-ui, sans-serif; color: #9fb0c8; }
+#mapPanel { position: absolute; left: var(--side); right: var(--side); bottom: calc(var(--bottom) + 6px); max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+#mapCards { display: flex; gap: 8px; overflow-x: auto; }
+#mapCards:empty { display: none; }
+#mapCards button { flex: none; width: 60px; height: 52px; margin: 0; padding: 4px; border-radius: 12px; border: 2px solid #2b4466; background: #0e1a33; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+#mapCards button.sel { border-color: #4fe3f0; box-shadow: 0 0 10px rgba(79, 227, 240, .35); }
+#mapCards svg { width: 34px; height: 20px; }
+#mapCards i { display: flex; gap: 2px; }
+#mapCards i b { width: 10px; height: 4px; background: #5fe07a; border-radius: 2px; }
+#mapCards i b.off { background: #24324a; }
+#mapCmds { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.cmd { margin: 0; padding: 6px 2px; height: 66px; border-radius: 14px; border: 2px solid #2f4870; background: #0e1a33; color: #dfe8f7; font: 700 11px/1.1 Nunito, system-ui, sans-serif; text-transform: none; letter-spacing: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.cmd svg { width: 28px; height: 28px; }
+.cmd:disabled { opacity: .3; }
+#mapPanel .act { min-height: 46px; padding: 6px 14px; font-size: 17px; border-radius: 16px; }
+#mapPanel .act .ico { width: 26px; height: 26px; }
+#mapOrders { display: grid !important; grid-template-columns: 1fr 1fr; }
+#mapOrders .act:only-child { grid-column: 1 / -1; }
+#mapInfo { margin: 0; font: 400 15px/1.35 Nunito, system-ui, sans-serif; color: #dfe7f5; white-space: pre-line; text-shadow: 0 1px 4px #000; }
+#homeArrow { align-self: center; transition: transform .15s; }
 #dlgMore { display: flex; flex-direction: column; gap: 8px; max-height: 42vh; overflow-y: auto; touch-action: pan-y; }
 #dlgMore button { margin: 0; font-size: 20px; padding: 9px; background: #1d2b52; color: var(--paper); }
 .gear { width: 30px; height: 30px; padding: 0; margin: 0; font: 400 20px/30px system-ui, sans-serif; background: none; color: #b4bcbf; pointer-events: auto; }
@@ -147,7 +174,7 @@ button:focus-visible { outline: 2px solid var(--paper); outline-offset: 2px; }
   </div>
   <div class="nav">
     <div class="r" id="rSpd"><span>SPD</span><b>0</b><em></em></div>
-    <div class="r" id="rAlt"><span>ALT</span><b>0</b></div>
+    <div class="r" id="rAlt"><span>HOME</span><svg id="homeArrow" viewBox="-6 -6 12 12" width="13" height="13" aria-hidden="true"><path d="M5 0 L-4 -4 L-2 0 L-4 4 Z" fill="#5fe07a"/></svg><b>0</b></div>
     <div class="r" id="rG"><span>G</span><b>0</b></div>
     <div class="r" id="rOre"><span>ORE</span><b>0</b></div>
     <button class="gear" id="gearHud" type="button" aria-label="Settings">&#9881;&#xFE0E;</button>
@@ -157,17 +184,25 @@ button:focus-visible { outline: 2px solid var(--paper); outline-offset: 2px; }
   <div id="toast" aria-live="polite"></div>
   <div id="zones"><div>HOLD: TURN LEFT</div><div>HOLD: TURN RIGHT</div></div>
   <div id="actions">
-    <button id="capture" type="button">Capture planet</button>
-    <button id="dock" type="button">Dock</button>
-    <button id="sos" type="button">Send SOS</button>
-    <button id="build" type="button">Build base</button>
-    <button id="talk" type="button">Talk to traveler</button>
-    <button id="loot" type="button">Search the dead ship</button>
-    <button id="courier" type="button">Send courier</button>
-    <button id="exit" type="button">Exit the ship</button>
+    <button id="capture" class="act gold" type="button"><span class="lbl">Capture planet</span></button>
+    <button id="dock" class="act fill" type="button"><span class="lbl">Dock</span></button>
+    <button id="sos" class="act warn" type="button"><span class="lbl">Send SOS</span></button>
+    <button id="build" class="act fill" type="button"><span class="lbl">Build base</span><b class="cnt"></b></button>
+    <button id="talk" class="act fill" type="button"><span class="lbl">Talk to traveler</span></button>
+    <button id="loot" class="act" type="button"><span class="lbl">Search the dead ship</span></button>
+    <button id="courier" class="act" type="button"><span class="lbl">Send courier</span></button>
+    <button id="mapBtn" class="act" type="button"><span class="lbl">Fleet map</span></button>
+    <button id="callCourier" class="act fill" type="button"><span class="lbl">Call the courier</span></button>
+    <button id="board" class="act" type="button"><span class="lbl">Board the command ship</span></button>
+    <button id="exit" class="act" type="button"><span class="lbl">Exit the ship</span></button>
   </div>
 </div>
 
+<section id="map" aria-label="Fleet map">
+  <canvas id="mapC"></canvas>
+  <div class="mapTop"><h3 id="mapTitle"></h3><p id="mapHint"></p></div>
+  <div id="mapPanel"><p id="mapInfo"></p><div id="mapCards"></div><div id="mapCmds"></div><div id="mapOrders" style="display:flex;flex-direction:column;gap:10px"></div><button id="mapClose" class="act" type="button"><span class="lbl"></span></button></div>
+</section>
 <div id="cineUi"><div id="caption" aria-live="polite"></div><button id="skip" type="button">Skip</button></div>
 <div id="hapBox" aria-hidden="true"><input id="hap" type="checkbox" switch tabindex="-1"><label id="hapL" for="hap"></label></div>
 
@@ -301,7 +336,7 @@ const TXT = {
   en: {
     title: 'Perigee', tagline: 'Your world is burning below. The people in your hold are frozen. Find them a new home.',
     howL: 'LEFT SIDE', howLd: 'Hold to turn left', howR: 'RIGHT SIDE', howRd: 'Hold to turn right', howB: 'BOTH SIDES', howBd: 'Main engine, for takeoff and landing', board: 'Board the ship',
-    fuel: 'Fuel', hull: 'Hull', spd: 'SPD', alt: 'ALT', ore: 'ORE', holdL: 'HOLD: TURN LEFT', holdR: 'HOLD: TURN RIGHT',
+    fuel: 'Fuel', hull: 'Hull', spd: 'SPD', alt: 'HOME', ore: 'ORE', holdL: 'HOLD: TURN LEFT', holdR: 'HOLD: TURN RIGHT',
     sos: 'Send SOS', build: 'Build base', talk: 'Talk to traveler', exit: 'Exit the ship', skip: 'Skip', survived: 'Survived', farthest: 'Farthest from home', landings: 'Landings', again: 'Fly again', km: 'km',
     settings: 'Settings', language: 'Language', sound: 'Sound', vibration: 'Vibration', on: 'On', off: 'Off', pc: 'PC controls', keyL: 'Turn left', keyR: 'Turn right', keyB: 'Main engine', press: 'Press a key', space: 'Space',
     setNote: 'A mouse also works: hold the left or right half of the screen, or both buttons. Esc opens settings. The Russian voice is Silero; English uses your device\'s built-in voice.', done: 'Done',
@@ -318,6 +353,12 @@ const TXT = {
     helpAsk: 'Please, I am out of {r}. Spare me some and I will pay you, and tell you where to look for a home.', helpGive: 'Give {r}', helpCant: 'You do not have enough {r} to spare.', helpLeave: 'Fly on', rFuel: 'fuel', rO2: 'oxygen', paidOre: 'Received {n} ore',
     year: 'Year {n}', people: 'Population {n}', chapter: 'Chapter {n}', earth: 'EARTH', type_star: 'Star', dock: 'Dock with trade ship', capture: 'Capture planet', stMaterials: 'BRING {n} ORE TO THE COLONY', stMelt: 'HULL MELTING. GET OUT', stAway: 'TRADE SHIP AWAY', developed: 'Developed', endMelt: 'The heat melted the ship.', endMeteor: 'A rock from space tore the ship apart.',
     dockWho: 'Trade ship, {s} captain', dockText: 'Hold: {o} ore, {f}% fuel, {a}% oxygen.', dockTake: 'Take fuel and oxygen', dockBuy: 'Buy fuel: {n} ore', dockUnload: 'Unload {n} ore', dockTrade: 'Send to trade in another system', dockLeave: 'Undock', dockJump: 'Jump to {s}',
+    callCourier: 'Call the courier', board: 'Board the command ship', leave: 'Launch your ship', supplyNone: 'The trade ship has no fuel or oxygen to send. Send an SOS.', supplyDone: 'The courier topped up your tanks', stSupply: 'COURIER BRINGING SUPPLIES', traderTow: 'Your trade ship is coming to tow you, free of charge',
+    cmdPatrol: 'Patrol', cmdTrade: 'Trade', cmdMine: 'Mining', cmdUp: 'Upgrade', cmdAttack: 'Attack', cmdBuild: 'Build', lvl: 'Level {n}', upNext: 'upgrade {c} ore', lvlUp: '{s} is now level {n}', botWorld: 'Rival empire', botTook: 'A rival empire took {s}', underAttack: '{s} is under attack! Send guard ships to patrol it', youLost: 'We lost {s}!', tradeDone: 'The trade ship loaded up at {s}',
+    flagBuild: 'Build the command ship · {c} ore', flagNeed: 'command ship: {n}/5 worlds', flagReady: 'The command ship is ready', flagLost: 'The command ship is lost', routeAdd: 'Add to the command ship route', routeClear: 'Clear the route', stAboard: 'ON THE COMMAND SHIP',
+    fleetWho: 'Defense fleet command', roleAsk: 'Three guard ships fly with you now. Strategic expansion: on the fleet map you send ships to capture worlds and build bases. Or explore further: travelers will sell you ship upgrades.', roleExplore: 'Explore further', roleConquer: 'Strategic expansion', stConquest: 'FLEET CAPTURING {s}', dockConquer: 'Switch to strategic expansion', dockExplore: 'Switch to exploring',
+    mapBtn: 'Fleet map', mapClose: 'Back to the ship', mapHint: 'Tap a world, pick guard ships below, then give an order.', mapOre: 'Ore in the fleet: {n}', ordCapture: 'Send guard ships: capture', ordBusy: 'Guard ships are on their way', ordBuild: 'Send builders: base {n}/3 · {c} ore', baseUp: 'Base {n}/3 built on {s}', ordBases: 'Bases: {n}/3', ordColony: 'Part of your network',
+    up_engines: 'Reinforced engines', up_rcs: 'Maneuvering thrusters', up_armor: 'Reinforced hull', up_tanks: 'Fuel tanks', up_cargo: 'Cargo module', up_scanner: 'Long-range scanner', upBuy: 'Buy {s}: {n} ore', upGot: 'Installed: {s}', upNeed: 'You need {n} ore for that',
     courier: 'Send courier', loot: 'Search the dead ship', stLoot: 'SEARCHING THE DEAD SHIP', stTanker: 'TANKER BRINGING FUEL', stCourier: 'COURIER ON ITS WAY',
     graveText: 'Unknown dead traveler. Died on {m} {d} at {t}.', month0: 'January', month1: 'February', month2: 'March', month3: 'April', month4: 'May', month5: 'June', month6: 'July', month7: 'August', month8: 'September', month9: 'October', month10: 'November', month11: 'December',
     travGreet: 'Greetings. I carry {f}% fuel, {a}% oxygen and {o} ore. Shall we trade?', tAsk: 'Ask about worlds for a new home', tBuyF: 'Buy fuel +25%: {n} ore', tBuyA: 'Buy oxygen +25%: {n} ore', tSellF: 'Sell 20% fuel: +{n} ore', tSellA: 'Sell 20% oxygen: +{n} ore', tBye: 'Goodbye',
@@ -326,7 +367,7 @@ const TXT = {
   ru: {
     title: 'Перигей', tagline: 'Ваш мир горит внизу. Люди в трюме заморожены. Найдите им новый дом.',
     howL: 'ЛЕВАЯ СТОРОНА', howLd: 'Держите, чтобы повернуть влево', howR: 'ПРАВАЯ СТОРОНА', howRd: 'Держите, чтобы повернуть вправо', howB: 'ОБЕ СТОРОНЫ', howBd: 'Главный двигатель, для взлёта и посадки', board: 'На борт',
-    fuel: 'Топливо', hull: 'Корпус', spd: 'СКОР', alt: 'ВЫС', ore: 'РУДА', holdL: 'ДЕРЖИ: ВЛЕВО', holdR: 'ДЕРЖИ: ВПРАВО',
+    fuel: 'Топливо', hull: 'Корпус', spd: 'СКОР', alt: 'ДОМ', ore: 'РУДА', holdL: 'ДЕРЖИ: ВЛЕВО', holdR: 'ДЕРЖИ: ВПРАВО',
     sos: 'Подать SOS', build: 'Построить базу', talk: 'Поговорить', exit: 'Выйти из корабля', skip: 'Пропустить', survived: 'Время жизни', farthest: 'Дальше всего от дома', landings: 'Посадок', again: 'Лететь снова', km: 'км',
     settings: 'Настройки', language: 'Язык', sound: 'Звук', vibration: 'Вибрация', on: 'Вкл', off: 'Выкл', pc: 'Управление на ПК', keyL: 'Поворот влево', keyR: 'Поворот вправо', keyB: 'Главный двигатель', press: 'Нажмите клавишу', space: 'Пробел',
     setNote: 'Работает и мышь: удерживайте левую или правую половину экрана или обе кнопки. Esc открывает настройки. Русский голос: Silero, для английского используется встроенный голос устройства.', done: 'Готово',
@@ -343,6 +384,12 @@ const TXT = {
     helpAsk: 'Прошу вас, у меня кончается {r}. Поделитесь, и я заплачу и подскажу, где искать дом.', helpGive: 'Отдать: {r}', helpCant: 'У вас недостаточно ресурса: {r}.', helpLeave: 'Лететь дальше', rFuel: 'топливо', rO2: 'кислород', paidOre: 'Получено руды: {n}',
     year: 'Год {n}', people: 'Население: {n}', chapter: 'Глава {n}', earth: 'ЗЕМЛЯ', type_star: 'Звезда', dock: 'Стыковка с торговцем', capture: 'Захватить планету', stMaterials: 'ПРИВЕЗИТЕ {n} РУДЫ В КОЛОНИЮ', stMelt: 'КОРПУС ПЛАВИТСЯ. УХОДИТЕ', stAway: 'ТОРГОВЕЦ В ОТЪЕЗДЕ', developed: 'Освоена', endMelt: 'Жар расплавил корабль.', endMeteor: 'Космический камень разнёс корабль.',
     dockWho: 'Торговый корабль, капитан: {s}', dockText: 'В трюме: руда {o}, топливо {f}%, кислород {a}%.', dockTake: 'Взять топливо и кислород', dockBuy: 'Купить топливо: {n} руды', dockUnload: 'Выгрузить руду: {n}', dockTrade: 'Отправить торговать в другую систему', dockLeave: 'Отстыковаться', dockJump: 'Прыжок: {s}',
+    callCourier: 'Вызвать курьера', board: 'Перейти на флагман', leave: 'Вылететь на своём корабле', supplyNone: 'На торговом корабле нет ни топлива, ни кислорода. Подайте SOS.', supplyDone: 'Курьер пополнил ваши баки', stSupply: 'КУРЬЕР ВЕЗЁТ ЗАПАСЫ', traderTow: 'Ваш торговый корабль летит взять вас на буксир, бесплатно',
+    cmdPatrol: 'Патруль', cmdTrade: 'Торговля', cmdMine: 'Добыча', cmdUp: 'Улучшить', cmdAttack: 'Атака', cmdBuild: 'Стройка', lvl: 'Уровень {n}', upNext: 'улучшение {c} руды', lvlUp: '{s}: теперь уровень {n}', botWorld: 'Вражеская империя', botTook: 'Вражеская империя захватила {s}', underAttack: '{s} атакована! Отправьте охрану в патруль', youLost: 'Мы потеряли {s}!', tradeDone: 'Торговый корабль загрузился: {s}',
+    flagBuild: 'Построить флагман · {c} руды', flagNeed: 'флагман: {n}/5 миров', flagReady: 'Флагман готов', flagLost: 'Флагман потерян', routeAdd: 'Добавить в маршрут флагмана', routeClear: 'Очистить маршрут', stAboard: 'НА ФЛАГМАНЕ',
+    fleetWho: 'Командир флота охраны', roleAsk: 'С нами уже три корабля охраны. Стратегическое расширение: на карте флота вы отправляете корабли захватывать миры и строить базы. Или исследовать дальше: путешественники будут продавать улучшения корабля.', roleExplore: 'Исследовать дальше', roleConquer: 'Стратегическое расширение', stConquest: 'ФЛОТ ЗАХВАТЫВАЕТ {s}', dockConquer: 'Перейти к стратегическому расширению', dockExplore: 'Перейти к исследованию',
+    mapBtn: 'Карта флота', mapClose: 'Вернуться к кораблю', mapHint: 'Выберите мир и корабли охраны, затем отдайте приказ.', mapOre: 'Руды во флоте: {n}', ordCapture: 'Отправить охрану: захват', ordBusy: 'Охрана уже в пути', ordBuild: 'Отправить строителей: база {n}/3 · {c} руды', baseUp: 'База {n}/3 построена: {s}', ordBases: 'Баз: {n}/3', ordColony: 'Входит в вашу сеть',
+    up_engines: 'Усиленные двигатели', up_rcs: 'Маневровые сопла', up_armor: 'Усиленный корпус', up_tanks: 'Топливные баки', up_cargo: 'Грузовой модуль', up_scanner: 'Дальний сканер', upBuy: '{s}: {n} руды', upGot: 'Установлено: {s}', upNeed: 'Нужно {n} руды',
     courier: 'Отправить курьера', loot: 'Обыскать погибший корабль', stLoot: 'ОБЫСКИВАЕМ ПОГИБШИЙ КОРАБЛЬ', stTanker: 'ТАНКЕР ВЕЗЁТ ТОПЛИВО', stCourier: 'КУРЬЕР В ПУТИ',
     graveText: 'Неизвестный погибший путешественник. Умер {d} {m} в {t}.', month0: 'января', month1: 'февраля', month2: 'марта', month3: 'апреля', month4: 'мая', month5: 'июня', month6: 'июля', month7: 'августа', month8: 'сентября', month9: 'октября', month10: 'ноября', month11: 'декабря',
     travGreet: 'Приветствую. У меня {f}% топлива, {a}% кислорода и {o} руды. Поторгуем?', tAsk: 'Спросить о мирах для нового дома', tBuyF: 'Купить топливо +25%: {n} руды', tBuyA: 'Купить кислород +25%: {n} руды', tSellF: 'Продать 20% топлива: +{n} руды', tSellA: 'Продать 20% кислорода: +{n} руды', tBye: 'До встречи',
@@ -518,17 +565,21 @@ function nozzle(g, x, top, w, h, narrow) {
   fillPts(g, '#7f8d9e', [x - w, top, x + w, top, x + w * narrow, top + h * .55, x - w * narrow, top + h * .55]);
   fillPts(g, '#566478', [x - w * narrow, top + h * .55, x + w * narrow, top + h * .55, x + w * narrow * .9, top + h, x - w * narrow * .9, top + h]);
 }
-function drawShipArt(g, look) {
+function drawShipArt(g, look, up) {
+  up = up || {};
+  if (up.tanks) for (const m of [-1, 1]) { fillRR(g, '#3f6f86', m * 114 - 20, 146, 40, 112, 20); fillRR(g, '#4f8aa3', m * 114 - 13, 154, 13, 96, 6); fillRR(g, '#c5ced8', m * 114 - 23, 166, 46, 10, 3); fillRR(g, '#c5ced8', m * 114 - 23, 228, 46, 10, 3); }
+  if (up.cargo) for (const m of [-1, 1]) { fillRR(g, '#c98f2e', m * 116 - 24, 146, 48, 104, 9); fillRR(g, '#e0a63e', m * 116 - 19, 152, 38, 92, 6); lines(g, '#b07a22', 3, [[m * 116 - 13, 168, m * 116 + 13, 168], [m * 116 - 13, 228, m * 116 + 13, 228]]); fillRR(g, '#7f8d9e', m * 90 - 7, 184, 14, 16, 3); }
   if (!shipHullFill) {
     shipHullFill = g.createLinearGradient(-90, 0, 90, 0); shipHullFill.addColorStop(0, '#f6f8fc'); shipHullFill.addColorStop(.6, '#e8edf5'); shipHullFill.addColorStop(1, '#cdd7e4');
     shipGlassFill = g.createLinearGradient(0, 58, 0, 138); shipGlassFill.addColorStop(0, '#2f6f98'); shipGlassFill.addColorStop(1, '#4286ad');
   }
-  nozzle(g, -60, 286, 17, 32, .72); nozzle(g, 60, 286, 17, 32, .72);
+  const big = up.engines ? 1.45 : 1;
+  nozzle(g, -60, 286, 17 * big, 32 * big, .72); nozzle(g, 60, 286, 17 * big, 32 * big, .72);
   if (look === 'engine') {
     fillPts(g, '#7f8d9e', [-27, 286, 27, 286, 19, 322, -19, 322]);
     fillPts(g, '#5a6476', [-19, 322, 19, 322, 13, 340, 16, 346, 7, 343, 3, 356, -4, 344, -12, 348, -13, 336]);
     lines(g, '#3a4250', 2.4, [[-10, 300, -3, 318], [10, 296, 4, 322]]);
-  } else nozzle(g, 0, 286, 27, 40, .7);
+  } else nozzle(g, 0, 286, 27 * big, 40 * big, .7);
   const wing = (m, broken, mended) => {
     const x = v => v * m;
     if (broken) fillPts(g, '#e1e7f0', [x(80), 196, x(126), 262, x(133), 268, x(122), 272, x(129), 280, x(114), 279, x(106), 284, x(82), 280]);
@@ -548,6 +599,9 @@ function drawShipArt(g, look) {
     fillRR(g, '#a3afbe', -38, 286, 76, 22, 4); rivets(g, [-30, 297, -15, 297, 0, 297, 15, 297, 30, 297]);
   }
   g.fillStyle = shipGlassFill; g.fill(SHIP_GLASS);
+  if (up.armor) { plate(g, -66, 214, 30, 92, .2); plate(g, 66, 214, 30, 92, -.2); plate(g, -52, 132, 22, 52, .45, 6); plate(g, 52, 132, 22, 52, -.45, 6); }
+  if (up.rcs) for (const [m, y] of [[-1, 112], [1, 112], [-1, 232], [1, 232]]) { fillRR(g, '#4a5466', m * 96 - 17, y - 12, 34, 24, 6); fillRR(g, '#e0a63a', m * 96 - 5, y - 13, 10, 26, 2); fillPts(g, COL.flame, [m * 113, y - 5, m * 140, y, m * 113, y + 5]); }
+  if (up.scanner) { lines(g, '#8a95a4', 6, [[58, 116, 92, 82]]); fillOval(g, '#b8c2cf', 100, 72, 24, 13, -.7); fillOval(g, '#8a95a4', 100, 72, 15, 7, -.7); lines(g, '#7f8d9e', 3, [[100, 72, 116, 52]]); }
   if (look === 'glass' || look === 'engine') lines(g, '#6fe6f5', 2.6, [[4, 60, 8, 90, -14, 112, -30, 124], [8, 90, 30, 104, 42, 104], [-14, 112, -6, 138], [30, 104, 26, 132]]);
   if (look === 'scratches') {
     lines(g, '#8a95a4', 2.6, [[-4, 176, 26, 146], [8, 186, 40, 152], [16, 200, 46, 172]]);
@@ -1112,8 +1166,10 @@ const cam = { x: 0, y: 0, z: .5, rot: 0 };
 const particles = [], enemies = [], bolts = [], robots = [];
 const BV = { x: 0, y: 0 }, AG = { x: 0, y: 0 };
 let rescue = null, paused = false, dialogAction = null, dialogAlt = null, settingsOpen = false;
+let traderBuilt = false, traderRespawn = 0, escortCheck = 0;
 let trader = null, pickupAt = 0, gateCool = 0, escortRespawn = 0, fleetRespawn = 0, inHeat = 0, nextComet = 0, nextMeteor = 0;
 const colonies = [], escorts = [], rocks = [], fleet = [], travelers = [], drones = [];
+let roleAsked = false, conquest = false, conquestTarget = null;
 let cargo = null, sosState = null, sosReady = 0, distress = null, nextTraveler = 0, sosSaid = -99, fleetBody = null, graveAt = 0, graveP = null, mission = null, nextWarn = {}, nextThreat = 0, alertUntil = 0;
 
 function newRun() {
@@ -1133,27 +1189,36 @@ function newRun() {
   ship = {
     x: home.x + Math.cos(la) * surf, y: home.y + Math.sin(la) * surf, vx: 0, vy: 0, ang: upAngle(home, la), spin: 0,
     fuel: 1, o2: 1, hull: 1, state: 'landed', alive: true, on: home, la, inWater: false, patched: false, cause: 'crash', activity: '',
-    thrust: false, turn: 0, warnFuel: false, warnO2: false, sputter: false, cargo: 0, crew: null, skullT: 0, hintedExit: false, said: {}, build: null, won: false, warnLow: false, warnHull: false, metTraveler: false
+    thrust: false, turn: 0, warnFuel: false, warnO2: false, sputter: false, cargo: 0, crew: null, skullT: 0, hintedExit: false, said: {}, build: null, won: false, warnLow: false, warnHull: false, metTraveler: false, up: {}
   };
   rescue = null; paused = false; $('dialog').classList.remove('on');
+  traderBuilt = false; traderRespawn = 0; escortCheck = 0; factions.length = 0; flagship = null; supplyFail = -99; stratTick = 0;
   trader = null; pickupAt = 0; gateCool = 0; escortRespawn = 0; fleetRespawn = 0; inHeat = 0; colonies.length = 0; escorts.length = 0; rocks.length = 0; fleet.length = 0; travelers.length = 0; drones.length = 0; nextComet = 70 + Math.random() * 60; nextMeteor = 50 + Math.random() * 50;
+  roleAsked = false; conquest = false; conquestTarget = null;
   cargo = null; sosState = null; sosReady = 0; distress = null; nextTraveler = 20 + Math.random() * 25; sosSaid = -99; fleetBody = null; graveAt = 0; graveP = null; mission = null; nextWarn = {}; nextThreat = 0; alertUntil = 0;
   deathT = 0; wreckT = 0; endShown = false; shake = 0;
   particles.length = 0; enemies.length = 0; bolts.length = 0; robots.length = 0;
   stats = { dist: 0, landings: 0, chapter: 1 };
   cam.x = home.x; cam.y = home.y; cam.rot = 0; cam.z = titleZoom();
+  CFG.cargoMax = 60;
   placeGraves();
 }
 
 function shipMass() { return CFG.dryMass + CFG.fuelMass * ship.fuel; }
-function fireMain(h) { ship.fuel = Math.max(0, ship.fuel - CFG.mainBurn * h); ship.thrust = true; }
+// Upgrades bought from travelers.
+const UPGRADES = { engines: 40, rcs: 25, armor: 45, tanks: 35, cargo: 30, scanner: 30 };
+const hasUp = k => !!(ship && ship.up && ship.up[k]);
+function thrustForce() { return CFG.thrustForce * (hasUp('engines') ? 1.35 : 1); }
+function fireMain(h) { ship.fuel = Math.max(0, ship.fuel - CFG.mainBurn * (hasUp('tanks') ? .6 : 1) * h); ship.thrust = true; }
+function installUpgrade(k) { ship.up[k] = true; if (k === 'cargo') CFG.cargoMax = 120; toast(tr('upGot', { s: tr('up_' + k) }), 2600); }
 
 const acc = { x: 0, y: 0 };
 function step(h) {
   t += h;
   updateBodies(t);
   const s = ship;
-  if (s.alive && s.state !== 'wreck' && !s.crew && !s.won) {
+  // Game convention: under tow, the tug's crew shares its air.
+  if (s.alive && s.state !== 'wreck' && !s.crew && !s.won && !(cargo && cargo.tow) && !(s.aboard && s.aboard.air > 0)) {
     s.o2 = Math.max(0, s.o2 - CFG.o2Drain * h);
     if (s.o2 <= 0) { killPilot(); computer('c_no_o2'); }
     else if (s.o2 < .25 && !s.warnO2) { s.warnO2 = true; computer('c_low_o2'); buzz([50, 80, 50]); }
@@ -1178,6 +1243,7 @@ function step(h) {
   if (pickupAt && t >= pickupAt) doPickup();
   if (s.state === 'wreck') return;
   if (cargo && cargo.tow) return;
+  if (s.aboard) { rideFlagship(h); return; }
 
   const L = s.alive && !s.crew && held.L, R = s.alive && !s.crew && held.R, both = L && R, hasFuel = s.fuel > 0;
   s.sputter = both && !hasFuel;
@@ -1191,7 +1257,7 @@ function step(h) {
     s.spin = 0;
     if (both && hasFuel) {
       fireMain(h);
-      if (CFG.thrustForce / shipMass() > p.g) {
+      if (thrustForce() / shipMass() > p.g) {
         s.state = 'flying'; s.inWater = false; s.activity = ''; s.build = null;
         s.x += ca * .6; s.y += sa * .6; s.vx += ca * 2; s.vy += sa * 2;
         robots.length = 0;
@@ -1210,14 +1276,15 @@ function step(h) {
   gravity(s.x, s.y, t, acc);
   let ax = acc.x, ay = acc.y;
   if (both && hasFuel) {
-    const a = CFG.thrustForce / shipMass();
+    const a = thrustForce() / shipMass();
     ax += Math.cos(s.ang) * a; ay += Math.sin(s.ang) * a;
     fireMain(h);
     s.spin *= Math.exp(-CFG.stabiliser * h);
   } else if (L !== R) {
     // Turning is free: it never burns fuel and still works on an empty tank.
     s.turn = L ? -1 : 1;
-    s.spin = clamp(s.spin + s.turn * CFG.torque * h, -CFG.maxSpin, CFG.maxSpin);
+    const rcs = hasUp('rcs'), top = CFG.maxSpin * (rcs ? 1.3 : 1);
+    s.spin = clamp(s.spin + s.turn * CFG.torque * (rcs ? 1.6 : 1) * h, -top, top);
   } else if (s.alive) {
     s.spin *= Math.exp(-CFG.stabiliser * h);
   }
@@ -1274,7 +1341,7 @@ function warnOnce(key, cooldown, red) {
 }
 function checkThreats() {
   const s = ship;
-  if (s.state !== 'flying' || !s.alive || (cargo && cargo.tow) || t < nextThreat) return;
+  if (s.state !== 'flying' || !s.alive || (cargo && cargo.tow) || s.aboard || t < nextThreat) return;
   nextThreat = t + .25;
   let x = s.x, y = s.y, vx = s.vx, vy = s.vy, belt = false, entry = false, heat = false;
   const a = { x: 0, y: 0 }, dt = 1 / 20, startD = active.map(p => Math.hypot(s.x - p.x, s.y - p.y));
@@ -1360,7 +1427,7 @@ function touchdown(p, a) {
   let msg;
   if (sev <= CFG.safeV) { msg = 'c_land'; Sound.sfx('land'); buzz(25); }
   else {
-    s.hull = Math.max(0, s.hull - (.12 + (sev - CFG.safeV) / (CFG.fatalV - CFG.safeV) * .7));
+    s.hull = Math.max(0, s.hull - (.12 + (sev - CFG.safeV) / (CFG.fatalV - CFG.safeV) * .7) * (hasUp('armor') ? .6 : 1));
     msg = 'c_hard';
     shake = Math.max(shake, 5 + sev * .2);
     dust(a, 34, p.color);
@@ -1400,8 +1467,8 @@ function explode(a) {
 function killPilot() { ship.alive = false; deathT = t; held.L = held.R = false; }
 function damageHull(amount, cause) {
   const s = ship;
-  if (s.state === 'wreck') return;
-  s.hull = Math.max(0, s.hull - amount);
+  if (s.state === 'wreck' || (cargo && cargo.tow) || s.aboard) return;   // under tow or aboard nothing can destroy you
+  s.hull = Math.max(0, s.hull - amount * (hasUp('armor') ? .6 : 1));
   shake = Math.max(shake, 4);
   if (s.hull <= 0) { s.cause = cause; explode(Math.random() * TAU); }
 }
@@ -1424,7 +1491,7 @@ function scanBodies() {
   if (!s.alive) return;
   for (const p of active) {
     if (!p.pop || p.scanned) continue;
-    if (Math.hypot(s.x - p.x, s.y - p.y) > p.belt) continue;
+    if (Math.hypot(s.x - p.x, s.y - p.y) > p.belt * (hasUp('scanner') ? 2.5 : 1)) continue;
     p.scanned = true;
     if (p.pop === 'hostile') { computer('c_hostile'); launchEnemies(p); }
     else computer('c_peaceful');
@@ -1440,7 +1507,8 @@ const SPEC = {            // acceleration = force / (dry + tank * fuel); burn = 
   hauler:   { force: 220, dry: 2.4, tank: 1,  burn: 1 / 220, air: 0,       cap: .5,  foot: 36 },
   tanker:   { force: 300, dry: 2.2, tank: 1,  burn: 1 / 110, air: 0,       cap: .4,  foot: 36 },
   courier:  { force: 120, dry: 1,   tank: .5, burn: 1 / 70,  air: 0,       cap: .3,  foot: 30 },
-  drone:    { force: 24,  dry: .2,  tank: .1, burn: 1 / 45,  air: 0,       cap: .08, foot: 4 }
+  drone:    { force: 24,  dry: .2,  tank: .1, burn: 1 / 45,  air: 0,       cap: .08, foot: 4 },
+  flagship: { force: 900, dry: 12,  tank: 3,  burn: 1 / 400, air: 0,       cap: 3,   foot: 70 }   // three times your ship's strength, and slow
 };
 const DV = { x: 0, y: 0 }, G2 = { x: 0, y: 0 }, BV2 = { x: 0, y: 0 };
 let craftSeq = 0;
@@ -1456,8 +1524,13 @@ const relV = (a, b) => Math.hypot(a.vx - b.vx, a.vy - b.vy);
 // The player's damage numbers, divided by the hull strength of the class.
 function hurt(c, amount, cause) {
   if (c.dead) return true;
+  if (c === cargo && c.tow) return false;   // the tug cannot be lost with you on the line
+  // Game convention: the trade ship can only be lost where you can see it.
+  if (c === trader && Math.hypot(c.x - cam.x, c.y - cam.y) > D / (2 * cam.z) + 60) return false;
   c.hull -= amount / c.spec.cap;
   if (c.hull > 0) return false;
+  // Trade, fuel and defense ships patch themselves with ore from the fleet's holds instead of breaking up.
+  if (isFleetShip(c) && fleetOre() >= 5) { takeFleetOre(5); c.hull = .15; return false; }
   c.hull = 0; c.dead = true; c.alive = false; c.cause = cause; c.thrust = false;
   boom(c.x, c.y, c.vx * .3, c.vy * .3, Math.round(30 + 40 * Math.min(1, c.spec.cap * 2)));
   return true;
@@ -1737,7 +1810,7 @@ function landSite(p, start, minArc, need) {
   return null;
 }
 function catchUp(c, slot) {
-  if (apart(c, ship) < 4200) return;
+  if (apart(c, ship) < (c.job ? 6800 : 4200)) return;   // ships on a job may work farther out
   c.job = null;
   launchPoint(c, slot);
 }
@@ -1758,8 +1831,9 @@ function pickFoe(e) {
   const s = ship;
   let best = null, bd = Infinity;
   const consider = o => { if (!o || o.dead || o.alive === false) return; const d = apart(o, e); if (d < bd) { bd = d; best = o; } };
-  if (s.state !== 'wreck') consider(s);
+  if (s.state !== 'wreck' && !s.aboard) consider(s);
   if (trader && !trader.away) consider(trader);
+  if (flagship) consider(flagship);
   escorts.forEach(consider); fleet.forEach(consider); travelers.forEach(consider);
   return best;
 }
@@ -1787,8 +1861,10 @@ function stepEnemies(h) {
   const s = ship;
   for (let i = enemies.length - 1; i >= 0; i--) {
     const e = enemies[i], p = e.home, far = apart(e, s);
-    if (e.dead || far > 6000 || (!e.alive && far > 2500)) { enemies.splice(i, 1); continue; }
+    if (e.faction && !e.dead && far > 7000) { e.faction.ore += 25; enemies.splice(i, 1); continue; }   // out of range: back in the hangar
+    if (e.dead || (!e.faction && far > 6000) || (!e.alive && far > 2500)) { enemies.splice(i, 1); continue; }
     e.age += h; e.cool -= h;
+    if (e.faction) { if (stepFactionShip(e, h)) enemies.splice(i, 1); continue; }
     if (e.mode !== 'home' && (e.fuel < .25 || e.o2 < .2 || e.age > CFG.enemyLife * (e.hunting ? 1.5 : 1) || !s.alive || s.state === 'wreck' || (!e.hunting && apart(s, p) > p.belt * 6))) { e.mode = 'home'; e.site = null; }
     let key;
     if (e.mode === 'home') {
@@ -1821,12 +1897,13 @@ function stepEnemies(h) {
 function captureTarget() {
   const s = ship;
   if (mode !== 'play' || !s.alive || s.state === 'wreck' || paused || s.crew || !escorts.length) return null;
-  return active.find(p => p.pop === 'hostile' && p.launched && apart(s, p) < p.belt * 1.25 && !enemies.some(e => e.home === p && e.alive && !e.dead && e.fuel > 0 && e.mode !== 'home')) || null;
+  return active.find(p => p.pop === 'hostile' && !p.owner && p.launched && apart(s, p) < p.belt * 1.25 && !enemies.some(e => e.home === p && e.alive && !e.dead && e.fuel > 0 && e.mode !== 'home')) || null;
 }
 function friends() {
   const list = [...escorts, ...fleet, ...drones, ...travelers];
   if (trader && !trader.away) list.push(trader);
-  if (cargo && (cargo.phase === 'hold' || cargo.phase === 'tow')) list.push(cargo);
+  if (cargo && cargo !== trader && (cargo.phase === 'hold' || cargo.phase === 'tow')) list.push(cargo);
+  if (flagship) list.push(flagship);
   return list;
 }
 function stepBolts(h) {
@@ -1838,7 +1915,7 @@ function stepBolts(h) {
     for (const c of b.ally ? enemies : mates) {
       if (c.dead || Math.hypot(b.x - c.x, b.y - c.y) > Math.max(14, c.foot * .8)) continue;
       bolts.splice(i, 1);
-      if (!hurt(c, CFG.boltDamage, 'shot') && apart(c, s) < 900) Sound.sfx('hit');
+      if (!hurt(c, b.dmg || CFG.boltDamage, 'shot') && apart(c, s) < 900) Sound.sfx('hit');
       continue next;
     }
     if (!b.ally && s.state !== 'wreck' && Math.hypot(b.x - s.x, b.y - s.y) < 16) {
@@ -2052,11 +2129,18 @@ function openDistressDialog(d) {
     }
   });
 }
-function talkTarget() { const s = ship; return travelers.find(c => c.alien && c.alien.phase === 'idle' && c.on === s.on && !c.talked && c.role !== 'rescue') || null; }
-function canTalk() { const s = ship; return mode === 'play' && s.state === 'landed' && s.alive && !s.crew && !s.build && !s.inWater && !paused && !!talkTarget(); }
+function talkTarget() {
+  const s = ship;
+  if (s.state === 'landed') return travelers.find(c => c.alien && c.alien.phase === 'idle' && c.on === s.on && !c.talked && c.role !== 'rescue') || null;
+  // Hail a traveler's ship in flight: close by, at about the same speed.
+  if (s.state === 'flying') return travelers.find(c => c.alive && !c.dead && c.state === 'flying' && !c.sos && !c.talked && apart(c, s) < 150 && relV(c, s) < 45) || null;
+  return null;
+}
+function canTalk() { const s = ship; return mode === 'play' && s.alive && !s.crew && !paused && !(cargo && cargo.tow) && (s.state === 'flying' || (s.state === 'landed' && !s.build && !s.inWater)) && !!talkTarget(); }
 function talkToTraveler() {
   if (!canTalk()) return;
   Sound.sfx('ui');
+  if (ship.state === 'flying') { openTravelerDialog(talkTarget()); return; }
   const s = ship, p = s.on, v = talkTarget(), sign = Math.sign(angDiff(s.la, v.alien.a)) || 1;
   s.crew = { phase: 'visit', a: s.la, target: v.alien.a + sign * 11 / p.R, side: sign, timer: 1e9, elapsed: 0, rescueAt: null, onArrive: () => openTravelerDialog(v) };
 }
@@ -2070,6 +2154,14 @@ function openTravelerDialog(v) {
   if (s.o2 < .99 && v.o2 >= .45 && s.cargo >= 10) more.push({ label: tr('tBuyA', { n: 10 }), action: deal(() => { s.cargo -= 10; v.ore += 10; v.o2 -= .25; s.o2 = Math.min(1, s.o2 + .25); }) });
   if (s.fuel >= .3 && v.fuel <= .8 && v.ore >= 12) more.push({ label: tr('tSellF', { n: 12 }), action: deal(() => { s.fuel -= .2; v.fuel += .2; v.ore -= 12; s.cargo = Math.min(CFG.cargoMax, s.cargo + 12); }) });
   if (s.o2 >= .35 && v.o2 <= .8 && v.ore >= 8) more.push({ label: tr('tSellA', { n: 8 }), action: deal(() => { s.o2 -= .2; v.o2 += .2; v.ore -= 8; s.cargo = Math.min(CFG.cargoMax, s.cargo + 8); }) });
+  // On the explorer path every traveler has two ship upgrades for sale.
+  if (roleAsked && !conquest) {
+    if (!v.offers) v.offers = Object.keys(UPGRADES).sort(() => Math.random() - .5).slice(0, 3);
+    for (const k of v.offers) if (!s.up[k]) more.unshift({ label: tr('upBuy', { s: tr('up_' + k), n: UPGRADES[k] }), action: () => {
+      if (s.cargo < UPGRADES[k]) { toast(tr('upNeed', { n: UPGRADES[k] }), 2400); return; }
+      s.cargo -= UPGRADES[k]; v.ore += UPGRADES[k]; installUpgrade(k); Sound.sfx('built'); reopen();
+    } });
+  }
   showDialog({
     face: v.species, who: tr('travelerOf', { s: tr('sp_' + v.species) }), text: tr('travGreet', { f: Math.round(v.fuel * 100), a: Math.round(v.o2 * 100), o: Math.floor(v.ore) }), ok: tr('tBye'), more,
     action: () => {
@@ -2108,7 +2200,7 @@ function feedFrom(c, h) {
 }
 function spawnTrader() {
   const T = makeCraft('hauler', { role: 'trader', art: 'container', stockF: .3, stockA: .3, ore: 0, away: null, species: SPECIES_KEYS[Math.floor(Math.random() * SPECIES_KEYS.length)] });
-  trader = T;
+  trader = T; traderBuilt = true;
   updateFleetBody();
   launchPoint(T, 0);
   Sound.sfx('jump');
@@ -2125,13 +2217,14 @@ function stepTrader(h) {
     }
     return;
   }
-  if (T.dead) { trader = null; return; }
+  if (T.dead) { trader = null; traderRespawn = t + 45; return; }   // the colonies build a new one
+  if (cargo === T) return;   // towing you: the tow code flies it
   catchUp(T, 0);
   if (T.fuel < .6 && T.stockF > 0) { const m = Math.min(.05 * h, T.stockF, 1 - T.fuel); T.fuel += m; T.stockF -= m; }
-  fly(T, h, fleetKey(T, 0));
+  fly(T, h, T.job && T.job.k === 'trade' ? tradeKey(T, h) : fleetKey(T, 0));
 }
 function syncEscorts() {
-  const wanted = Math.min(CFG.maxEscorts, colonies.length);
+  const wanted = escortCap();
   while (escorts.length < wanted) {
     const e = makeCraft('escort', { side: escorts.length % 2 ? 1 : -1, mode: 'attack', modeT: 0, slot: 4 + escorts.length });
     launchPoint(e, e.slot);
@@ -2152,6 +2245,12 @@ function stepEscorts(h) {
     let key = pullUp(e, null);
     if (key === null) {
       if (foe) key = attackKey(e, foe, h, true);
+      else if (flagship && (e.docking || e.hull < .6)) {
+        e.docking = e.hull < .97;
+        key = meetKey(e, flagship, 50);
+        if (apart(e, flagship) < 100 && relV(e, flagship) < 30) e.hull = Math.min(1, e.hull + .08 * h);   // docked: the command ship mends it
+      }
+      else if (e.order && active.includes(e.order.p)) key = orbitKey(e, e.order.p, orbitSlot(e.order.p, 1 + i % 5));
       else if (s.state === 'flying' && s.alive) {
         const sp = Math.hypot(s.vx, s.vy), bx = sp > 20 ? s.vx / sp : Math.cos(s.ang), by = sp > 20 ? s.vy / sp : Math.sin(s.ang), k = i - (escorts.length - 1) / 2, back = 120 + Math.abs(k) * 30;
         gotoDV(e, s.x - bx * back - by * k * 70, s.y - by * back + bx * k * 70, s.vx, s.vy, 260, 0, null);
@@ -2173,10 +2272,11 @@ function syncFleet() {
 function stepFleet(h) {
   for (let i = fleet.length - 1; i >= 0; i--) {
     const f = fleet[i];
-    if (f.dead) { if (f.role === 'courier' && f.job && f.job.target) f.job.target.courier = null; fleet.splice(i, 1); fleetRespawn = t + 60; continue; }
+    if (f.gone || (f.role === 'builder' && !f.job)) { fleet.splice(i, 1); continue; }
+    if (f.dead) { if (f.role === 'courier' && f.job && f.job.target) f.job.target.courier = null; fleet.splice(i, 1); if (f.role !== 'builder') fleetRespawn = t + 60; continue; }
     catchUp(f, f.slot);
     feedFrom(f, h);
-    fly(f, h, f.role === 'tanker' ? tankerKey(f, h) : f.role === 'courier' ? courierKey(f, h) : collectorKey(f, h));
+    fly(f, h, f.role === 'tanker' ? tankerKey(f, h) : f.role === 'courier' ? courierKey(f, h) : f.role === 'builder' ? builderKey(f, h) : collectorKey(f, h));
   }
   stepDrones(h);
 }
@@ -2203,7 +2303,14 @@ function tankerKey(c, h) {
   const s = ship, T = trader;
   const dry = s.alive && s.state !== 'wreck' && !s.crew && s.fuel < .15 && !(s.state === 'landed' && s.on.stock.fuel > 0) && !(cargo && cargo.tow) && c.cargoF > .05;
   if (dry && (!c.job || c.job.k !== 'deliver')) c.job = { k: 'deliver' };
+  if (!c.job && flagship && flagship.fuel < .5 && c.cargoF > .2) c.job = { k: 'flag' };
   const j = c.job;
+  if (j && j.k === 'flag') {
+    const F = flagship;
+    if (!F || F.fuel > .97 || c.cargoF <= 0) { c.job = null; return ''; }
+    if (c.state === 'flying' && apart(c, F) < 120 && relV(c, F) < 30) { const m = Math.min(.2 * h, c.cargoF, 1 - F.fuel); F.fuel += m; c.cargoF -= m; }
+    return meetKey(c, F, 80);
+  }
   if (!j) {
     if (T && !T.away && T.stockF < 1.2 && c.cargoF < 1.5 && t >= (c.nextLook || 0)) {
       c.nextLook = t + 6;
@@ -2268,8 +2375,19 @@ function sendCourier() {
   Sound.sfx('ui'); computer('c_courier');
 }
 function courierKey(c, h) {
-  const T = trader, j = c.job;
+  const T = trader;
+  if (!c.job && flagship && flagship.air < .4 && T && !T.away && T.stockA > .1) c.job = { k: 'flagAir', phase: 'load' };
+  const j = c.job;
   if (!j) return fleetKey(c, c.slot);
+  if (j.k === 'supply') return supplyKey(c, h);
+  if (j.k === 'mine') return minerKey(c, h);
+  if (j.k === 'flagAir') {
+    const F = flagship;
+    if (!F || !T || T.away) { c.job = null; return ''; }
+    if (j.phase === 'load') { if (c.state === 'flying' && apart(c, T) < 80 && relV(c, T) < 25) { j.a = Math.min(.6, T.stockA); T.stockA -= j.a; j.phase = 'go'; return ''; } return meetKey(c, T, 50); }
+    if (c.state === 'flying' && apart(c, F) < 120 && relV(c, F) < 30) { const m = Math.min(.2 * h, j.a, 1 - F.air); F.air += m; j.a -= m; if (j.a <= .001 || F.air >= .999) { T.stockA += j.a; c.job = null; } return ''; }
+    return meetKey(c, F, 80);
+  }
   if (j.k === 'help') {
     const v = j.target;
     const back = () => { if (T && !T.away) { T.stockF += j.giveF; T.stockA += j.giveA; } c.job = { k: 'return' }; return ''; };
@@ -2355,9 +2473,636 @@ function stepEmpire(h) {
   stepFleet(h);
   stepEscorts(h);
   stepGates();
-  if (trader && escorts.length < Math.min(CFG.maxEscorts, colonies.length) && t >= escortRespawn) syncEscorts();
-  if (trader && t >= fleetRespawn) syncFleet();
+  // The network outlives its trade ship: colonies keep sending escorts and ships, and build a new trade ship.
+  if (traderBuilt && !trader && t >= traderRespawn && mode === 'play') { spawnTrader(); computer('c_fleet'); }
+  if (traderBuilt && escorts.length < escortCap() && t >= escortRespawn) syncEscorts();
+  if (traderBuilt && t >= fleetRespawn) syncFleet();
+  // Every 40 s a badly damaged escort is swapped for a fresh one from the colonies.
+  if (traderBuilt && t >= escortCheck) {
+    escortCheck = t + 40;
+    const worn = escorts.find(e => !e.dead && e.hull < .35);
+    if (worn) { const e = makeCraft('escort', { side: worn.side, mode: 'attack', modeT: 0, slot: worn.slot }); launchPoint(e, e.slot); escorts[escorts.indexOf(worn)] = e; computer('c_escort'); }
+  }
+  repairFleet(h);
+  if (!roleAsked && escorts.length >= 3 && !paused && mode === 'play' && ship.alive && ship.state !== 'wreck') { roleAsked = true; askRole(); }
+  if (conquest) stepConquest(h);
+  if (conquest || factions.length) stepStrategy(h);
+  stepFlagship(h);
 }
+// ---------- fleet upkeep: ore in any hold mends hulls ----------
+function isFleetShip(c) { return c === trader || c === flagship || c.kind === 'escort' || fleet.includes(c); }
+function oreHolds() { return [trader && !trader.away ? trader : null, ...fleet.filter(f => f.role !== 'tanker')].filter(Boolean); }
+function fleetOre() { return oreHolds().reduce((a, c) => a + c.ore, 0); }
+function takeFleetOre(n) { for (const c of oreHolds()) { const m = Math.min(c.ore, n); c.ore -= m; n -= m; if (n <= 0) return; } }
+function repairFleet(h) {
+  for (const c of [trader && !trader.away ? trader : null, ...fleet, ...escorts]) {
+    if (!c || c.dead || c.hull >= 1) continue;
+    const ore = fleetOre();
+    if (ore <= 0) return;
+    const m = Math.min(.05 * h, 1 - c.hull, ore / 10);   // ten ore per full hull
+    c.hull += m; takeFleetOre(m * 10);
+  }
+}
+
+// ---------- strategic expansion: the fleet map, orders, builder ships ----------
+const ICON = {
+  build: '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 30h32v5H4z"/><path d="M7 30a13 13 0 0 1 26 0z"/><path class="cut" d="M16 30v-6a4 4 0 0 1 8 0v6z"/><path d="M27 19l5-9" stroke="currentColor" stroke-width="2.6" fill="none"/><circle cx="32.6" cy="9" r="2.8"/></svg>',
+  loot: '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><circle cx="17" cy="17" r="10" fill="none" stroke="currentColor" stroke-width="4.5"/><path d="M24.5 24.5l10 10" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/></svg>',
+  talk: '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><path d="M7 7h26a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H18l-9 7v-7H7a4 4 0 0 1-4-4V11a4 4 0 0 1 4-4z"/><circle class="cut" cx="13" cy="18" r="2.4"/><circle class="cut" cx="20" cy="18" r="2.4"/><circle class="cut" cx="27" cy="18" r="2.4"/></svg>',
+  exit: '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><path d="M7 4h17v8h-4V8h-9v24h9v-4h4v8H7z"/><path d="M19 20h15M28 13l7 7-7 7" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  sos: '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="4.5"/><path d="M12.5 12.5a10.5 10.5 0 0 0 0 15M27.5 12.5a10.5 10.5 0 0 1 0 15M7 7a18 18 0 0 0 0 26M33 7a18 18 0 0 1 0 26" stroke="currentColor" stroke-width="3.4" fill="none" stroke-linecap="round"/></svg>',
+  dock: '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><circle cx="14" cy="20" r="9" fill="none" stroke="currentColor" stroke-width="4.5"/><circle cx="26" cy="20" r="9" fill="none" stroke="currentColor" stroke-width="4.5"/></svg>',
+  capture: '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><path d="M10 5v31" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M12 6h22l-6 8 6 8H12z"/></svg>',
+  courier: '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 12l16-7 16 7v17l-16 7-16-7z"/><path class="cut" d="M5.5 13.5l14.5 6.5 14.5-6.5-1.5-1-13 5.8-13-5.8zM18.8 21h2.4v13.5h-2.4z"/></svg>',
+  map: '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><path d="M3 9l11-5 12 5 11-5v27l-11 5-12-5-11 5z"/><path class="cut" d="M12.8 6h2.4v26h-2.4zM24.8 10h2.4v26h-2.4z"/></svg>',
+  back: '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><path d="M33 20H9M17 11l-9 9 9 9" stroke="currentColor" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+};
+const BASE_COST = 40;
+let mapOpen = false, mapSel = null, mapView = null;
+function canMap() { const s = ship; return mode === 'play' && conquest && !!trader && !trader.away && s.alive && s.state !== 'wreck' && !s.crew && !paused && !(cargo && cargo.tow); }
+function openMap() {
+  if (!canMap()) return;
+  mapOpen = true; paused = true; mapSel = null; mapPick = new Set(escorts);
+  pointers.clear(); keys.clear(); syncHeld();
+  $('map').classList.add('on');
+  drawMap(); renderMapPanel();
+}
+function closeMap() { mapOpen = false; paused = false; $('map').classList.remove('on'); }
+function mapBodies() { const s = ship; return active.filter(p => !p.orbit && Math.hypot(p.x - s.x, p.y - s.y) < 5200); }
+function builderOrders(p) { return fleet.filter(f => f.role === 'builder' && f.job && f.job.p === p && f.job.k !== 'home').length; }
+function drawMap() {
+  const cv = $('mapC'), r = Math.min(devicePixelRatio || 1, 2.5), w = cv.clientWidth || W, hh = cv.clientHeight || H;
+  if (cv.width !== Math.round(w * r) || cv.height !== Math.round(hh * r)) { cv.width = Math.round(w * r); cv.height = Math.round(hh * r); }
+  const g = cv.getContext('2d'), s = ship, list = mapBodies();
+  g.setTransform(r, 0, 0, r, 0, 0);
+  g.fillStyle = '#03050c'; g.fillRect(0, 0, w, hh);
+  let x0 = s.x, x1 = s.x, y0 = s.y, y1 = s.y;
+  for (const p of list) { x0 = Math.min(x0, p.x - p.R); x1 = Math.max(x1, p.x + p.R); y0 = Math.min(y0, p.y - p.R); y1 = Math.max(y1, p.y + p.R); }
+  const top = 86, bottom = Math.min(hh * .62, ($('mapPanel').offsetHeight || 300) + 16), k = Math.min((w - 48) / Math.max(1, x1 - x0), (hh - top - bottom) / Math.max(1, y1 - y0));
+  const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, ox = w / 2, oy = top + (hh - top - bottom) / 2;
+  const X = x => ox + (x - cx) * k, Y = y => oy + (y - cy) * k;
+  mapView = { X, Y, list, k };
+  g.fillStyle = 'rgba(233,226,207,.5)';
+  for (const st of stars) g.fillRect(st.x * w, st.y * hh, 1, 1);
+  // Zones of influence: yours in cyan, a rival's in red once you have scouted it.
+  for (const p of list) {
+    const mine = p.developed && !p.barren, theirs = p.owner && p.scouted;
+    if (!mine && !theirs) continue;
+    const px = X(p.x), py = Y(p.y), zr = zoneR(p) * k, gr = g.createRadialGradient(px, py, 0, px, py, zr);
+    gr.addColorStop(0, mine ? 'rgba(79,227,240,.18)' : 'rgba(255,60,40,.22)'); gr.addColorStop(1, mine ? 'rgba(79,227,240,.03)' : 'rgba(255,60,40,.04)');
+    g.fillStyle = gr; g.beginPath(); g.arc(px, py, zr, 0, TAU); g.fill();
+    g.strokeStyle = mine ? 'rgba(79,227,240,.5)' : 'rgba(255,80,60,.6)'; g.lineWidth = 1.2; g.stroke();
+  }
+  const route = (ax, ay, bx, by, col) => {
+    const d = Math.hypot(bx - ax, by - ay), n = Math.floor(d / 9), off = (perf * 14) % 9;
+    g.fillStyle = col;
+    for (let i = 0; i < n; i++) { const q = (i * 9 + off) / d; if (q > 1) break; g.beginPath(); g.arc(ax + (bx - ax) * q, ay + (by - ay) * q, 1.7, 0, TAU); g.fill(); }
+  };
+  for (const e of escorts) if (e.order && list.includes(e.order.p)) route(X(e.x), Y(e.y), X(e.order.p.x), Y(e.order.p.y), e.order.k === 'attack' ? '#4fe3f0' : 'rgba(79,227,240,.5)');
+  for (const f of fleet) if (f.job && f.job.p && f.job.k !== 'home' && f.job.k !== 'return' && list.includes(f.job.p)) route(X(f.x), Y(f.y), X(f.job.p.x), Y(f.job.p.y), f.role === 'courier' ? '#46d6a4' : f.role === 'builder' ? '#5eeab0' : '#f2b632');
+  if (trader && !trader.away && trader.job && trader.job.p) route(X(trader.x), Y(trader.y), X(trader.job.p.x), Y(trader.job.p.y), '#f2b632');
+  if (flagship) { let ax = X(flagship.x), ay = Y(flagship.y); for (const q of flagship.route) { route(ax, ay, X(q.x), Y(q.y), '#cfeaff'); ax = X(q.x); ay = Y(q.y); } }
+  const seen = o => apart(o, s) < 1700 || escorts.some(e => apart(e, o) < 1200) || (flagship && apart(flagship, o) < 1500);
+  for (const e of enemies) if (e.faction && e.goal && seen(e)) route(X(e.x), Y(e.y), X(e.goal.x), Y(e.goal.y), 'rgba(255,80,60,.85)');
+  const targets = new Set(escorts.filter(e => e.order && e.order.k === 'attack').map(e => e.order.p));
+  for (const p of list) {
+    const px = X(p.x), py = Y(p.y), pr = Math.max(8, p.R * k);
+    const glow = g.createRadialGradient(px, py, pr * .6, px, py, pr * 3.4);
+    glow.addColorStop(0, blend(p.color, '#1b3a7a', .55) + '66'); glow.addColorStop(1, 'rgba(10,30,80,0)');
+    g.fillStyle = glow; g.beginPath(); g.arc(px, py, pr * 3.4, 0, TAU); g.fill();
+    g.save(); g.translate(px, py); g.scale(pr / p.R, pr / p.R); drawPlanetArt(g, p.art, p.R); g.restore();
+    const ring = (c, wd, rad) => { g.strokeStyle = c; g.lineWidth = wd; g.beginPath(); g.arc(px, py, rad, 0, TAU); g.stroke(); };
+    const theirs = p.owner && p.scouted;
+    if (p.developed) ring('#4fe3f0', 2, pr + 5);
+    else if (theirs) { ring('#ff3b2a', 3, pr + 5); ring('rgba(255,60,40,.35)', 6, pr + 10); }
+    else if (p.pop === 'hostile' && !p.owner) ring('#ff5a36', 2, pr + 5);
+    else if (p.pop && !p.owner) ring('#f4f0e4', 1.5, pr + 5);
+    if (p === mapSel) ring('#ffffff', 2.5, pr + 13 + Math.sin(perf * 5) * 1.5);
+    if (targets.has(p)) { g.strokeStyle = '#4fe3f0'; g.lineWidth = 2; g.beginPath(); g.arc(px, py, pr * .5, 0, TAU); g.moveTo(px - pr * .9, py); g.lineTo(px + pr * .9, py); g.moveTo(px, py - pr * .9); g.lineTo(px, py + pr * .9); g.stroke(); }
+    g.font = "600 10px 'Martian Mono', monospace"; g.textAlign = 'center'; g.fillStyle = p.developed ? '#4fe3f0' : theirs ? '#ff7a64' : '#9fb0c8';
+    g.fillText(p.name, px, py + pr + 18);
+    if (p.developed || theirs) {
+      const bx = px + pr + 4, by = py - pr - 12;
+      fillRR(g, p.developed ? '#123a55' : '#5a1414', bx, by, 22, 15, 4);
+      g.fillStyle = p.developed ? '#bfefff' : '#ffd0c8'; g.font = "700 10px Nunito, sans-serif"; g.fillText(['I', 'II', 'III'][(p.lvl || 1) - 1], bx + 11, by + 11);
+    }
+    if (p.bases && p.bases.length && !p.developed) { g.fillStyle = '#5eeab0'; g.fillText('▲'.repeat(p.bases.length), px, py - pr - 9); }
+  }
+  const mark = (o, c, size) => { g.fillStyle = c; g.beginPath(); g.arc(X(o.x), Y(o.y), size, 0, TAU); g.fill(); };
+  for (const e of enemies) if (!e.dead && seen(e)) mark(e, '#ff5a4a', 2.4);
+  for (const e of escorts) mark(e, '#e9f0ff', 2.4);
+  for (const f of fleet) mark(f, f.role === 'builder' ? '#5eeab0' : f.role === 'courier' ? '#46d6a4' : '#f2b632', 2.6);
+  if (trader && !trader.away) mark(trader, '#f2b632', 3.6);
+  if (flagship) { g.save(); g.translate(X(flagship.x), Y(flagship.y)); g.rotate(flagship.ang + Math.PI / 2); fillPts(g, '#dff3ff', [0, -12, 10, 8, -10, 8]); g.restore(); }
+  g.save(); g.translate(X(s.x), Y(s.y)); g.rotate(s.ang + Math.PI / 2); fillPts(g, '#ffffff', [0, -9, 6, 7, 0, 3, -6, 7]); g.restore();
+}
+function mapTap(e) {
+  e.preventDefault();
+  if (!mapView) return;
+  const rc = $('mapC').getBoundingClientRect(), mx = e.clientX - rc.left, my = e.clientY - rc.top;
+  let best = null, bd = Infinity;
+  for (const p of mapView.list) { const d = Math.hypot(mapView.X(p.x) - mx, mapView.Y(p.y) - my); if (d < Math.max(26, p.R * mapView.k + 10) && d < bd) { bd = d; best = p; } }
+  if (!best) return;
+  mapSel = best; Sound.sfx('ui'); renderMapPanel();
+}
+function renderMapPanel() {
+  const p = mapSel, info = [], s = ship;
+  $('mapHint').textContent = tr('mapHint');
+  for (const e of [...mapPick]) if (!escorts.includes(e)) mapPick.delete(e);
+  const cards = $('mapCards'); cards.textContent = '';
+  for (const e of escorts) {
+    const b = document.createElement('button'), n = Math.ceil(clamp(e.hull, 0, 1) * 3 - 1e-6);
+    b.type = 'button'; b.className = mapPick.has(e) ? 'sel' : '';
+    b.innerHTML = SHIP_MINI + '<i>' + [0, 1, 2].map(i => '<b' + (i < n ? '' : ' class="off"') + '></b>').join('') + '</i>';
+    b.addEventListener('click', () => { Sound.sfx('ui'); if (mapPick.has(e)) mapPick.delete(e); else mapPick.add(e); renderMapPanel(); });
+    cards.append(b);
+  }
+  const picked = escorts.filter(e => mapPick.has(e) && !e.dead), cmds = $('mapCmds'); cmds.textContent = '';
+  const cmd = (icon, label, ok, fn) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'cmd'; b.disabled = !ok;
+    b.innerHTML = CMD_ICON[icon] + '<span></span>'; b.querySelector('span').textContent = label;
+    b.addEventListener('click', () => { Sound.sfx('ui'); fn(); renderMapPanel(); });
+    cmds.append(b);
+  };
+  const T = trader, cour = courierShip(), mine = !!p && p.developed && !p.barren, free = !!p && !p.owner && p.pop !== 'hostile' && !p.isStar;
+  const built = p ? (p.bases ? p.bases.length : 0) + builderOrders(p) : 0;
+  cmd('patrol', tr('cmdPatrol'), !!p && !p.isStar && picked.length > 0, () => { for (const e of picked) e.order = { k: 'patrol', p }; });
+  cmd('trade', tr('cmdTrade'), free && !!T && !T.away && p.stock.fuel + p.stock.o2 + p.stock.ore > 20, () => { T.job = { k: 'trade', p, t: 0 }; });
+  cmd('mine', tr('cmdMine'), free && !!cour && !cour.job && botLandable(p) && p.stock.ore > 10, () => sendMiner(p));
+  cmd('upgrade', tr('cmdUp'), mine && (p.lvl || 1) < 3 && fleetOre() >= upCost(p), () => upgradeColony(p));
+  cmd('attack', tr('cmdAttack'), !!p && !p.developed && !p.isStar && picked.length > 0, () => { for (const e of picked) e.order = { k: 'attack', p }; });
+  cmd('build', tr('cmdBuild'), !!p && !p.pop && !p.developed && botLandable(p) && built < CFG.basesNeeded && fleetOre() >= BASE_COST && fleet.filter(f => f.role === 'builder').length < 2, () => sendBuilder(p));
+  const box = $('mapOrders'); box.textContent = '';
+  const order = (icon, label, cls, fn, off) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'act ' + cls; b.disabled = !!off;
+    b.innerHTML = ICON[icon] + '<span class="lbl"></span>'; b.querySelector('.lbl').textContent = label;
+    b.addEventListener('click', () => { Sound.sfx('ui'); fn(); renderMapPanel(); });
+    box.append(b);
+  };
+  if (!flagship && flagNeed() >= 5) order('dock', tr('flagBuild', { c: FLAG_COST }), 'fill', buildFlagship, !canBuildFlagship());
+  if (flagship && p && !p.isStar) order('map', tr('routeAdd'), '', () => { flagship.route.push(p); });
+  if (flagship && flagship.route.length) order('back', tr('routeClear'), '', () => { flagship.route.length = 0; flagship.dwell = 0; });
+  if (p) {
+    info.push(p.name + ' · ' + typeName(p) + (p.owner && p.scouted ? ' · ' + tr('botWorld') : popText(p) ? ' · ' + popText(p) : ''));
+    if (p.developed) info.push(tr('lvl', { n: p.lvl || 1 }) + ((p.lvl || 1) < 3 ? ' · ' + tr('upNext', { c: upCost(p) }) : ''));
+    else if (p.bases && p.bases.length) info.push(tr('ordBases', { n: p.bases.length }));
+    if (p.holdT > 0) info.push(tr('ordBusy'));
+  } else info.push(tr('mapHint'));
+  info.push(tr('mapOre', { n: Math.floor(fleetOre()) }) + (flagship ? '' : ' · ' + tr('flagNeed', { n: Math.min(5, flagNeed()) })));
+  $('mapInfo').textContent = info.join('\n');
+}
+function sendBuilder(p) {
+  if (fleetOre() < BASE_COST) return;
+  const site = landSite(p, Math.atan2((fleetBody || ship).y - p.y, (fleetBody || ship).x - p.x), 0, 42);
+  if (site === null) return;
+  takeFleetOre(BASE_COST);
+  const b = makeCraft('courier', { role: 'builder', art: 'courier', slot: 6, job: { k: 'go', p, site } });
+  launchPoint(b, 6);
+  fleet.push(b);
+}
+// A builder flies out, lands, puts up a base, and flies home. Three bases make the world part of your network.
+function builderKey(c, h) {
+  const j = c.job, p = j.p, T = trader;
+  if (j.k === 'go') {
+    if (!active.includes(p) || p.developed || p.pop) { j.k = 'home'; return ''; }
+    if (c.state === 'landed' && c.on === p) { j.k = 'build'; j.bt = 0; return ''; }
+    if (c.state === 'landed') return 'B';
+    return approachKey(c, p, j.site);
+  }
+  if (j.k === 'build') {
+    j.bt += h;
+    if (Math.random() < h * 8) spawn(c.x, c.y, c.vx + (Math.random() - .5) * 40, c.vy + (Math.random() - .5) * 40, .3, COL.amber, 1.6);
+    if (apart(c, ship) < 700 && Math.random() < h * 5) Sound.sfx('hammer');
+    if (j.bt < 6) return '';
+    const a = landSite(p, c.la, 30, 30);
+    if (a !== null) (p.bases = p.bases || []).push(a);
+    const n = p.bases ? p.bases.length : 0;
+    if (n >= CFG.basesNeeded && !p.developed) { p.hint = false; p.barren = false; addColony(p); computer('c_developed'); }
+    else if (a !== null) toast(tr('baseUp', { n, s: p.name }), 2600);
+    j.k = 'home';
+    return 'B';
+  }
+  if (!T || T.away || T.dead) { c.gone = true; return ''; }
+  if (c.state === 'flying' && apart(c, T) < 80 && relV(c, T) < 30) { c.gone = true; return ''; }
+  return meetKey(c, T, 50);
+}
+// ---------- with three defense ships: stay an explorer, or take the worlds around you ----------
+function askRole() {
+  showDialog({
+    face: trader ? trader.species : 'green', who: tr('fleetWho'), text: tr('roleAsk'), ok: tr('roleExplore'), alt: tr('roleConquer'),
+    action: () => { conquest = false; closeDialog(); },
+    altAction: () => { conquest = true; closeDialog(); computer('c_escort'); spawnFactions(); }
+  });
+}
+function conquestPick() {
+  const s = ship;
+  let best = null, bd = 4000;
+  for (const p of active) { if (!p.pop || p.developed || p.isStar) continue; const d = apart(p, s); if (d < bd) { bd = d; best = p; } }
+  return best;
+}
+// ---------- running dry: the courier fetches supplies from the trade ship; nearby, the trade ship tows you for free ----------
+let supplyFail = -99;
+function needSupply() { const s = ship; return s.alive && !s.crew && !s.aboard && s.state !== 'wreck' && (s.fuel < .1 || s.o2 < .25); }
+function canCallCourier() {
+  const c = courierShip(), T = trader;
+  return mode === 'play' && !paused && needSupply() && !!c && !c.job && !!T && !T.away && (T.stockF > .05 || T.stockA > .05) && !cargo && t - supplyFail > 30;
+}
+function callCourier() {
+  if (!canCallCourier()) return;
+  courierShip().job = { k: 'supply', phase: 'load' };
+  Sound.sfx('ui'); computer('c_courier');
+}
+function supplyKey(c, h) {
+  const s = ship, T = trader, j = c.job;
+  if (!s.alive || s.state === 'wreck') { c.job = { k: 'return' }; return ''; }
+  if (j.phase === 'load') {
+    if (!T || T.away || T.dead) { c.job = null; return ''; }
+    if (c.state === 'flying' && apart(c, T) < 80 && relV(c, T) < 25) {
+      j.f = s.fuel < .7 ? Math.min(.6, T.stockF) : 0; j.a = s.o2 < .8 ? Math.min(.6, T.stockA) : 0;
+      T.stockF -= j.f; T.stockA -= j.a;
+      if (j.f + j.a < .02) { c.job = null; supplyFail = t; toast(tr('supplyNone'), 3600); return ''; }
+      j.phase = 'go';
+      return '';
+    }
+    return meetKey(c, T, 50);
+  }
+  let close;
+  if (s.state === 'landed') {
+    const p = s.on;
+    if (j.p !== p) { j.p = p; j.site = landSite(p, s.la, 50, 26); }
+    if (j.site === null) { c.job = { k: 'return' }; return ''; }
+    close = c.state === 'landed' && c.on === p && Math.abs(angDiff(c.la, s.la)) * p.R < 200;
+    if (!close) return approachKey(c, p, j.site);
+  } else {
+    j.p = null;
+    close = c.state === 'flying' && apart(c, s) < 90 && relV(c, s) < 25;
+    if (!close) return meetKey(c, s, 40);
+  }
+  const mf = Math.min(.3 * h, j.f, 1 - s.fuel), ma = Math.min(.3 * h, j.a, 1 - s.o2);
+  s.fuel += mf; j.f -= mf; s.o2 += ma; j.a -= ma;
+  if (s.fuel > .02) s.warnFuel = false; if (s.o2 > .3) s.warnO2 = false;
+  if ((j.f <= .001 || s.fuel >= .999) && (j.a <= .001 || s.o2 >= .999)) {
+    if (T && !T.away) { T.stockF += j.f; T.stockA += j.a; }
+    toast(tr('supplyDone'), 2600); Sound.sfx('chime');
+    c.job = { k: 'return' };
+  }
+  return '';
+}
+// Your own trade ship, if it is close enough, answers the SOS and tows you for nothing.
+function startFreeTow() {
+  const T = trader;
+  Object.assign(T, { freeTow: true, phase: 'come', tow: false, towT: 0, steadyT: 0 });
+  cargo = T;
+  toast(tr('traderTow'), 3200);
+  Sound.sfx('chime');
+}
+function endFreeTow() { const T = trader; if (T) Object.assign(T, { freeTow: false, tow: false, phase: undefined }); cargo = null; }
+function stepFreeTow(c, h) {
+  const s = ship;
+  if (c.dead || c.away || c !== trader || s.state === 'wreck' || !s.alive) { endFreeTow(); return; }
+  if (c.phase === 'come') {
+    fly(c, h, meetKey(c, s, 70));
+    if (apart(c, s) < 115 && relV(c, s) < 35) {
+      const safe = active.filter(p => p.pop !== 'hostile' && !p.owner && !p.robots && p.type !== 'ocean' && !p.heatR && !p.isStar && !p.orbit).sort((a, b) => apart(a, s) - apart(b, s));
+      const target = safe.find(p => p.stock.fuel > 0) || safe[0];
+      if (!target) { endFreeTow(); return; }
+      const ox = s.x - c.x, oy = s.y - c.y, ol = Math.hypot(ox, oy) || 1;
+      Object.assign(c, { target, phase: 'tow', tow: true, towT: 0, steadyT: 0, offX: ox / ol * 80, offY: oy / ol * 80 });
+    }
+    return;
+  }
+  stepTow(c, h);
+  if (!c.tow) { s.o2 = Math.max(s.o2, .4); endFreeTow(); }
+}
+
+// ---------- strategic expansion: colony levels, zones of influence, orders, rival empires ----------
+const factions = [];
+let mapPick = new Set();
+const zoneR = p => 600 + 400 * (p.lvl || 1);
+const upCost = p => 60 * (p.lvl || 1);
+function escortCap() { const mine = colonies.filter(c => !c.barren); return Math.min(8, Math.max(mine.length, 0) + mine.reduce((a, c) => a + (c.lvl || 1) - 1, 0)); }
+function upgradeColony(p) {
+  const c = upCost(p);
+  if (!p.developed || (p.lvl || 1) >= 3 || fleetOre() < c) return;
+  takeFleetOre(c); p.lvl = (p.lvl || 1) + 1;
+  toast(tr('lvlUp', { s: p.name, n: p.lvl }), 2600); Sound.sfx('built');
+}
+function loseColony(p) {
+  const i = colonies.indexOf(p);
+  if (i >= 0) colonies.splice(i, 1);
+  p.developed = false; p.captured = false; p.lvl = 1;
+  for (const e of escorts) if (e.order && e.order.p === p) e.order = null;
+  toast(tr('youLost', { s: p.name }), 3600); Sound.sfx('warn'); buzz([80, 60, 80]);
+}
+// Rivals: two inhabited worlds become empires that grow by the same rules as you.
+function makeFaction(p) {
+  const f = { home: p, planets: [p], ore: 60, ships: [], target: null, capT: 0, species: p.species || SPECIES_KEYS[Math.floor(Math.random() * SPECIES_KEYS.length)], dead: false };
+  Object.assign(p, { owner: f, pop: 'hostile', lvl: 1, launched: true, species: f.species });
+  factions.push(f);
+  return f;
+}
+function spawnFactions() {
+  if (factions.length) return;
+  const base = colonies.find(c => !c.barren) || fleetBody || ship;
+  const cands = active.filter(p => p.pop && !p.developed && !p.owner && !p.isStar && !p.orbit && apart(p, base) > 2200 && apart(p, base) < 4500).sort((a, b) => apart(a, base) - apart(b, base));
+  for (const p of cands.slice(0, 2)) makeFaction(p);
+  if (!factions.length) {
+    const q = active.filter(p => !p.isStar && !p.orbit && !p.developed && !p.heatR && apart(p, base) > 2200 && apart(p, base) < 4500).sort((a, b) => apart(a, base) - apart(b, base))[0];
+    if (q) makeFaction(q);
+  }
+}
+function spawnFactionShip(f, p) {
+  const sp = f.species, foot = alienFoot(sp), a = Math.random() * TAU, r = p.ext + foot + 6;
+  bodyVel(p, BV2);
+  const e = makeCraft('fighter', { species: sp, foot, home: p, homeA: a, age: 0, cool: 1 + Math.random(), side: Math.random() < .5 ? 1 : -1, mode: 'attack', modeT: 0, hunting: true, faction: f,
+    x: p.x + Math.cos(a) * r, y: p.y + Math.sin(a) * r, vx: BV2.x + Math.cos(a) * 45, vy: BV2.y + Math.sin(a) * 45, ang: a });
+  enemies.push(e); f.ships.push(e);
+}
+// A rival ship: refuel at home, fight anything of yours that comes close, otherwise hold over its goal.
+function stepFactionShip(e, h) {
+  const s = ship, f = e.faction;
+  const base = f.planets.filter(p => active.includes(p)).sort((a, b) => apart(a, e) - apart(b, e))[0];
+  let key = null;
+  if (e.fuel < .3) e.refuel = true;
+  if (e.refuel && base) {
+    const r = orbitSlot(base, 2);
+    key = pullUp(e, null) ?? orbitKey(e, base, r);
+    if (apart(e, base) < r + 150) { e.fuel = Math.min(1, e.fuel + .1 * h); if (e.fuel > .95) e.refuel = false; }
+  } else {
+    e.refuel = false;
+    const foe = pickFoe(e);
+    if (foe && apart(foe, e) < 1000) {
+      key = pullUp(e, null) ?? attackKey(e, foe, h, false);
+      if (foe === s && !s.crew && e.alive && apart(e, s) < 19) { damageHull(CFG.ramDamage, 'shot'); hurt(e, 99, 'shot'); return true; }
+    } else {
+      const goal = e.goal && active.includes(e.goal) ? e.goal : base;
+      key = goal ? pullUp(e, null) ?? orbitKey(e, goal, orbitSlot(goal, 2) + (e.id % 4) * 25) : '';
+    }
+  }
+  e.o2 = Math.max(e.o2, .5);
+  fly(e, h, key || '');
+  return false;
+}
+let stratTick = 0;
+function stepStrategy(h) {
+  // Planet guns: your colonies from level II, rival worlds likewise.
+  for (const p of active) {
+    const mine = p.developed && !p.barren, theirs = p.owner && !p.owner.dead;
+    if ((!mine && !theirs) || (p.lvl || 1) < 2) continue;
+    p.gunCool = (p.gunCool || 0) - h;
+    if (p.gunCool > 0) continue;
+    const range = 250 + 120 * p.lvl, pool = mine ? enemies : [...friends(), ...(ship.alive && !ship.aboard && ship.state !== 'wreck' ? [ship] : [])];
+    let best = null, bd = range + p.ext;
+    for (const o of pool) { if (o.dead || (mine && !o.alive)) continue; const d = apart(o, p); if (d < bd) { bd = d; best = o; } }
+    if (!best) { p.gunCool = .5; continue; }
+    p.gunCool = 2.4 / p.lvl;
+    const a = Math.atan2(best.y - p.y, best.x - p.x), ox = p.x + Math.cos(a) * (p.ext + 8), oy = p.y + Math.sin(a) * (p.ext + 8);
+    bodyVel(p, BV2);
+    const tt = Math.hypot(best.x - ox, best.y - oy) / CFG.boltSpeed, tx = best.x + (best.vx - BV2.x) * tt - ox, ty = best.y + (best.vy - BV2.y) * tt - oy, tl = Math.hypot(tx, ty) || 1;
+    bolts.push({ x: ox, y: oy, vx: BV2.x + tx / tl * CFG.boltSpeed, vy: BV2.y + ty / tl * CFG.boltSpeed, life: 1.6, ally: mine });
+    if (apart(p, ship) < 1200) Sound.sfx('bolt');
+  }
+  stratTick -= h;
+  if (stratTick > 0) return;
+  stratTick = 1;
+  const s = ship;
+  for (const f of factions) {
+    f.planets = f.planets.filter(p => p.owner === f);
+    f.ships = f.ships.filter(e => !e.dead && enemies.includes(e));
+    if (!f.planets.length) { if (!f.ships.length) f.dead = true; continue; }
+    // Scouting: their red halo shows on the map once you or your ships have been near.
+    for (const p of f.planets) if (!p.scouted && (apart(s, p) < p.belt * (hasUp('scanner') ? 3 : 2) || escorts.some(e => apart(e, p) < p.belt * 2) || (flagship && apart(flagship, p) < 1600))) p.scouted = true;
+    const here = f.planets.filter(p => active.includes(p));
+    if (!here.length) continue;   // too far away to matter right now
+    f.ore += f.planets.reduce((a, p) => a + .3 + .25 * (p.lvl || 1), 0);
+    const cap = 2 + 2 * f.planets.reduce((a, p) => a + (p.lvl || 1), 0);
+    if (f.ships.length < cap && f.ore >= 30) { f.ore -= 30; spawnFactionShip(f, here[Math.floor(Math.random() * here.length)]); }
+    const weak = f.planets.find(p => (p.lvl || 1) < 3);
+    if (weak && f.ore >= 100 * (weak.lvl || 1) + 40) { f.ore -= 100 * (weak.lvl || 1); weak.lvl = (weak.lvl || 1) + 1; }
+    // Expansion: empty worlds first, then your colonies, then other peoples.
+    if (!f.target || f.target.owner === f || !active.includes(f.target)) {
+      f.target = null; f.capT = 0;
+      const idle = f.ships.filter(e => !e.goal && !e.refuel);
+      if (idle.length >= 4) {
+        let best = null, bs = Infinity;
+        for (const q of active) {
+          if (q.isStar || q.orbit || q.owner === f || q.heatR) continue;
+          const d = Math.min(...f.planets.map(p => apart(p, q)));
+          if (d > 3500) continue;
+          const sc = d + (q.developed ? 700 : 0) + (q.pop && !q.owner ? 1400 : 0) + (q.owner ? 500 : 0);
+          if (sc < bs) { bs = sc; best = q; }
+        }
+        if (best) { f.target = best; idle.slice(0, idle.length - 1).forEach(e => { e.goal = best; }); }
+      }
+    }
+    const T = f.target;
+    if (!T) continue;
+    if (T.pop && !T.owner && !T.launched) launchEnemies(T, true);
+    const reach = orbitSlot(T, 2) + 260;
+    const att = f.ships.filter(e => e.alive && apart(e, T) < reach).length;
+    const def = escorts.filter(e => !e.dead && apart(e, T) < reach).length + (flagship && apart(flagship, T) < reach ? 3 : 0) + enemies.filter(e => e.home === T && !e.faction && e.alive && !e.dead).length + (T.owner ? T.owner.ships.filter(e => e.alive && apart(e, T) < reach).length : 0);
+    f.capT = att >= 2 && def === 0 ? f.capT + 1 : 0;
+    if (f.capT === 1 && T.developed) { toast(tr('underAttack', { s: T.name }), 3600); Sound.sfx('warn'); buzz([60, 40, 60]); }
+    if (f.capT >= (T.developed ? 25 + 10 * (T.lvl || 1) : 20)) {
+      if (T.developed) loseColony(T);
+      else if (T.scouted || apart(T, s) < 2500) toast(tr('botTook', { s: T.name }), 3000);
+      if (T.owner) T.owner.planets = T.owner.planets.filter(q => q !== T);
+      Object.assign(T, { owner: f, pop: 'hostile', species: f.species, lvl: 1, launched: true, scanned: true });
+      f.planets.push(T);
+      for (const e of f.ships) if (e.goal === T) e.goal = null;
+      f.target = null; f.capT = 0;
+    }
+  }
+}
+// Your guard ships: an attack order takes a world once its defenders are gone (empty worlds are claimed by holding them).
+function stepConquest(h) {
+  const targets = new Set(escorts.filter(e => e.order && e.order.k === 'attack').map(e => e.order.p));
+  conquestTarget = targets.size ? [...targets][0] : null;
+  for (const p of targets) {
+    if (p.developed) { for (const e of escorts) if (e.order && e.order.p === p) e.order = { k: 'patrol', p }; continue; }
+    if (!active.includes(p)) continue;
+    const reach = Math.max(p.belt * 1.3, orbitSlot(p, 5) + 80);
+    const close = escorts.filter(e => !e.dead && e.order && e.order.p === p && apart(e, p) < reach);
+    if (!close.length) { p.holdT = 0; continue; }
+    if (p.pop && !p.owner && !p.launched) { p.scanned = true; if (p.pop === 'peaceful') p.pop = 'hostile'; launchEnemies(p, true); computer('c_hostile'); continue; }
+    const guarded = enemies.some(e => e.alive && !e.dead && e.fuel > 0 && e.mode !== 'home' && (e.home === p || (p.owner && e.faction === p.owner)) && apart(e, p) < reach * 1.6);
+    if (guarded) { p.holdT = 0; continue; }
+    p.holdT = (p.holdT || 0) + h;
+    if (p.holdT < (p.pop ? 3 : 10)) continue;
+    if (p.owner) { p.owner.planets = p.owner.planets.filter(q => q !== p); p.owner = null; }
+    Object.assign(p, { pop: null, captured: true, hint: false, lvl: 1, holdT: 0, barren: false });
+    if (trader && !trader.away) trader.ore += 25;
+    computer('c_capture'); buzz(60);
+    addColony(p);
+    for (const e of escorts) if (e.order && e.order.p === p) e.order = { k: 'patrol', p };
+  }
+}
+function sendMiner(p) {
+  const c = courierShip();
+  if (!c || c.job) return;
+  const site = landSite(p, Math.atan2(c.y - p.y, c.x - p.x), 0, 26);
+  if (site !== null) c.job = { k: 'mine', p, site };
+}
+function minerKey(c, h) {
+  const j = c.job, p = j.p;
+  if (!active.includes(p) || p.owner) { c.job = { k: 'return' }; return ''; }
+  if (c.state === 'landed' && c.on === p) {
+    const m = Math.min(3 * h, 40 - c.ore, p.stock.ore);
+    c.ore += m; p.stock.ore = Math.max(0, p.stock.ore - m);
+    if (Math.random() < .3) spawn(c.x, c.y, c.vx + (Math.random() - .5) * 50, c.vy + (Math.random() - .5) * 50, .3, '#5eeab0', 1.8);
+    if (c.ore >= 40 || p.stock.ore <= .5) { c.job = { k: 'return' }; return 'B'; }
+    return '';
+  }
+  if (c.state === 'landed') return 'B';
+  return approachKey(c, p, j.site);
+}
+// The trade ship flies to a world, loads what it has, and comes back to the fleet.
+function tradeKey(T, h) {
+  const j = T.job, p = j.p;
+  if (!active.includes(p) || p.owner || p.pop === 'hostile') { T.job = null; return fleetKey(T, 0); }
+  const r = orbitSlot(p, 0), key = orbitKey(T, p, r);
+  if (Math.abs(apart(T, p) - r) < 90) {
+    j.t += h;
+    if (j.t > 8) {
+      const f = Math.min(1.5, p.stock.fuel / 100), a = Math.min(1.5, p.stock.o2 / 100), o = Math.min(80, p.stock.ore * .5);
+      T.stockF += f; T.stockA += a; T.ore += o;
+      p.stock.fuel -= f * 100; p.stock.o2 -= a * 100; p.stock.ore -= o;
+      toast(tr('tradeDone', { s: p.name }), 2600); Sound.sfx('chime');
+      T.job = null;
+    }
+  }
+  return key;
+}
+
+// ---------- the command ship ----------
+let flagship = null;
+const FLAG_COST = 150;
+function flagNeed() { return colonies.filter(c => !c.barren).length; }
+function canBuildFlagship() { return conquest && !flagship && flagNeed() >= 5 && fleetOre() >= FLAG_COST && !!trader && !trader.away; }
+function buildFlagship() {
+  if (!canBuildFlagship()) return;
+  takeFleetOre(FLAG_COST);
+  const F = makeCraft('flagship', { role: 'flagship', route: [], dwell: 0, cool: 0, air: 1 });
+  launchPoint(F, 8);
+  flagship = F;
+  toast(tr('flagReady'), 3200); Sound.sfx('jump'); buzz(60);
+}
+function flagLook(F) { const h = F.hull; return h > .85 ? 'whole' : h > .72 ? 'dents' : h > .58 ? 'chip' : h > .44 ? 'breach' : h > .3 ? 'bridge' : 'engine'; }
+// It never lands: it follows the route you plot on the map, slowly, and holds orbit at each world for a while.
+function flagshipKey(F, h) {
+  const wp = F.route[0];
+  if (wp && !active.includes(wp)) { F.route.shift(); return ''; }
+  if (wp) {
+    const r = orbitSlot(wp, 8) + 40, d = apart(F, wp);
+    if (d < r * 1.35) {
+      F.dwell += h;
+      if (F.dwell > 8) { F.route.shift(); F.dwell = 0; F.home = wp; }
+      return orbitKey(F, wp, r);
+    }
+    bodyVel(wp, BV2);
+    gotoDV(F, wp.x, wp.y, BV2.x, BV2.y, 70, r, wp);
+    return botKey(F, DV.x, DV.y, 10, 4);
+  }
+  const p = F.home && active.includes(F.home) ? F.home : fleetBody;
+  if (p) return orbitKey(F, p, orbitSlot(p, 8) + 40);
+  const s = ship;
+  gotoDV(F, s.x - 300, s.y, s.vx, s.vy, 70, 0, null);
+  return botKey(F, DV.x, DV.y, 10, 4);
+}
+function stepFlagship(h) {
+  const F = flagship;
+  if (!F) return;
+  if (F.dead) { if (ship.aboard === F) disembark(); flagship = null; toast(tr('flagLost'), 3200); return; }
+  if (apart(F, ship) > 5200) launchPoint(F, 8);
+  F.air = Math.max(0, F.air - h / 600);
+  // Turrets fire all round, so the ship need not turn to shoot.
+  F.cool -= h;
+  if (F.cool <= 0 && F.air > 0) {
+    let best = null, bd = 520;
+    for (const e of enemies) { if (e.dead || !e.alive) continue; const d = apart(e, F); if (d < bd) { bd = d; best = e; } }
+    F.cool = .5;
+    if (best) {
+      const tt = bd / 340, tx = best.x + (best.vx - F.vx) * tt - F.x, ty = best.y + (best.vy - F.vy) * tt - F.y, tl = Math.hypot(tx, ty) || 1;
+      bolts.push({ x: F.x + tx / tl * 50, y: F.y + ty / tl * 50, vx: F.vx + tx / tl * 340, vy: F.vy + ty / tl * 340, life: 1.7, ally: true, dmg: CFG.boltDamage * 3 });
+      if (apart(F, ship) < 900) Sound.sfx('bolt');
+    }
+  }
+  fly(F, h, flagshipKey(F, h));
+}
+// Boarding: you ride on the command ship; it feeds your tanks while you are aboard.
+function canBoard() {
+  const s = ship, F = flagship;
+  if (mode !== 'play' || paused || !F || F.dead || !s.alive || s.crew) return false;
+  return s.aboard === F || (s.state === 'flying' && apart(s, F) < 260 && !(cargo && cargo.tow));
+}
+function toggleBoard() {
+  if (!canBoard()) return;
+  Sound.sfx('ui');
+  if (ship.aboard) disembark();
+  else { ship.aboard = flagship; toast(tr('stAboard'), 2200); }
+}
+function disembark() {
+  const s = ship, F = s.aboard;
+  s.aboard = null;
+  if (!F) return;
+  const a = F.ang;
+  Object.assign(s, { state: 'flying', on: null, x: F.x + Math.cos(a) * 110, y: F.y + Math.sin(a) * 110, vx: F.vx, vy: F.vy, ang: a, spin: 0 });
+  refreshActive(s.x, s.y);
+}
+function rideFlagship(h) {
+  const s = ship, F = s.aboard;
+  if (!F || F.dead) { disembark(); return; }
+  Object.assign(s, { state: 'flying', x: F.x, y: F.y, vx: F.vx, vy: F.vy, ang: F.ang, spin: 0 });
+  if (s.fuel < 1 && F.fuel > .1) { const m = Math.min(.05 * h, 1 - s.fuel); s.fuel += m; F.fuel -= m * .2; }
+  if (F.air > 0) s.o2 = Math.min(1, s.o2 + .05 * h);
+  if (s.fuel > .02) s.warnFuel = false; if (s.o2 > .3) s.warnO2 = false;
+  refreshActive(s.x, s.y);
+}
+// Nose up, centred: a stepped triangle with a bridge, two domes and three engines.
+function drawFlagshipArt(g, look, jet) {
+  for (const x of [-72, 0, 72]) {
+    const dead = look === 'engine' && x === 0;
+    if (jet && !dead) { fillPts(g, COL.flame, [x - 11, 132, x + 11, 132, x, 160 + Math.random() * 16]); fillPts(g, COL.flameCore, [x - 5, 132, x + 5, 132, x, 148]); }
+    fillPts(g, '#8e9bad', [x - 18, 106, x + 18, 106, x + 13, 134, x - 13, 134]);
+    fillRR(g, '#6f7c8e', x - 14, 126, 28, 8, 3);
+  }
+  fillPts(g, '#e3e9f1', [0, -172, 142, 114, -142, 114]);
+  fillPts(g, '#cdd6e2', [0, -172, 142, 114, 112, 114]);
+  fillPts(g, '#f2f5f9', [0, -172, -112, 114, -142, 114]);
+  fillPts(g, '#d4dce7', [0, -160, 24, -52, -24, -52]);
+  for (const [x, y, w, hh] of [[-6, -132, 12, 22], [-8, -100, 16, 24], [-92, 70, 18, 30], [74, 70, 18, 30], [-64, -6, 12, 30], [52, -6, 12, 30], [-38, -72, 10, 26], [28, -72, 10, 26], [-118, 96, 26, 10], [92, 96, 26, 10]]) fillRR(g, '#c4cedb', x, y, w, hh, 2);
+  const tier = (y0, y1, w0, w1, c) => { fillPts(g, c, [-w0, y0, w0, y0, w1, y1, -w1, y1]); lines(g, '#adb8c7', 2, [[-w1, y1, w1, y1]]); };
+  tier(-52, -26, 30, 42, '#edf1f6');
+  tier(-24, 2, 46, 58, '#e7ecf3');
+  tier(4, 42, 62, 80, '#edf1f6');
+  fillPts(g, '#dfe6ef', [-84, 46, 84, 46, 98, 100, 30, 100, 24, 124, -24, 124, -30, 100, -98, 100]);
+  fillRR(g, '#f7f9fc', -64, 58, 128, 34, 9);
+  fillRR(g, '#24539e', -54, 69, 108, 13, 4);
+  lines(g, '#7fb0e8', 2, [[-12, 81, -4, 70], [2, 81, 10, 70], [24, 81, 30, 73]]);
+  fillRR(g, '#d9e0ea', -12, 47, 24, 9, 2);
+  fillDisc(g, '#f8fafd', -38, 49, 10); fillDisc(g, '#dde4ed', -35, 52, 5.5);
+  fillDisc(g, '#f8fafd', 38, 49, 10); fillDisc(g, '#dde4ed', 41, 52, 5.5);
+  for (const [x, y] of [[-120, 104], [112, 104], [-5, 32], [-5, -6], [-72, 40], [64, 40], [-32, -60], [24, -60], [-88, 4], [80, 4]]) fillRR(g, '#45d8f0', x, y, 9, 3.5, 1);
+  if (look === 'dents') lines(g, '#97a3b3', 2.4, [[-100, 30, -82, 12, -90, -8], [-108, 58, -88, 44, -94, 32]]);
+  if (look === 'chip') { fillPts(g, '#7f8a9b', [-142, 114, -112, 114, -118, 98, -128, 102, -132, 92]); lines(g, '#5a6476', 2, [[-138, 108, -122, 100]]); }
+  if (look === 'breach') { fillPts(g, '#1c2029', [92, -8, 108, -16, 114, 4, 106, 26, 90, 20]); lines(g, '#d24a4a', 2.2, [[96, 0, 104, 14]]); lines(g, '#3fb4e0', 2.2, [[100, -6, 108, 4]]); }
+  if (look === 'bridge') { lines(g, '#eaf6ff', 1.8, [[16, 70, 24, 76, 20, 82], [24, 76, 34, 71]]); fillDisc(g, '#5a6476', 38, 49, 10); lines(g, '#3a4250', 2.4, [[31, 42, 45, 56], [45, 42, 31, 56]]); }
+  if (look === 'engine') {
+    for (let i = 0; i < 4; i++) fillDisc(g, 'rgba(70,74,84,' + (.55 - i * .1) + ')', Math.sin(perf * 3 + i) * 4, 136 + i * 10, 9 + i * 3);
+    for (let i = 0; i < 6; i++) fillDisc(g, COL.amber, (Math.random() - .5) * 22, 132 + Math.random() * 20, 1.6);
+  }
+}
+const CMD_ICON = {
+  patrol: '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 9L9 30h22z" fill="none" stroke="#4fe3f0" stroke-width="2.6"/><circle cx="20" cy="9" r="5" fill="#4fe3f0"/><circle cx="9" cy="30" r="5" fill="#4fe3f0"/><circle cx="31" cy="30" r="5" fill="#4fe3f0"/></svg>',
+  trade: '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5l14 7v16l-14 7-14-7V12z" fill="none" stroke="#f2b632" stroke-width="3" stroke-linejoin="round"/><path d="M6 12l14 7 14-7M20 19v16" fill="none" stroke="#f2b632" stroke-width="3" stroke-linejoin="round"/></svg>',
+  mine: '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4l6 10-6 22-6-22z" fill="#46d6a4"/><path d="M10 14l5 7-4 13-6-12z" fill="#2fb487"/><path d="M30 14l-5 7 4 13 6-12z" fill="#2fb487"/></svg>',
+  upgrade: '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 22l12-11 12 11M8 33l12-11 12 11" fill="none" stroke="#6fb4ff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  attack: '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="11" fill="none" stroke="#ff5a4a" stroke-width="3.4"/><path d="M20 3v9M20 28v9M3 20h9M28 20h9" stroke="#ff5a4a" stroke-width="3.4" stroke-linecap="round"/></svg>',
+  build: '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 30h30v5H5z" fill="#5eeab0"/><path d="M8 30a12 12 0 0 1 24 0z" fill="#5eeab0"/><path d="M16 30v-5a4 4 0 0 1 8 0v5z" fill="#0e1a33"/></svg>'
+};
+const SHIP_MINI = '<svg viewBox="0 0 34 20" aria-hidden="true"><path d="M3 15L31 4 19 18 15 12z" fill="#e9f0ff"/><path d="M3 15l-2 3 9-1z" fill="#4fe3f0"/></svg>';
 // Gate jumps are the one place ships appear somewhere new: the fleet comes through with you and parks in orbit.
 function jumpTo(q) {
   const s = ship, out = gatePos(q), ox = Math.cos(q.gateA), oy = Math.sin(q.gateA);
@@ -2398,6 +3143,7 @@ function openDock(first) {
     T.away = { backAt: t + CFG.tradeTime * (courierShip() ? .5 : 1), ore: T.ore }; T.ore = 0;
     Sound.sfx('jump'); closeDialog(); computer('c_trade_out');
   } });
+  if (escorts.length >= 3) more.push({ label: tr(conquest ? 'dockExplore' : 'dockConquer'), action: () => { conquest = !conquest; conquestTarget = null; roleAsked = true; if (conquest) spawnFactions(); for (const f of fleet) if (f.role === 'builder') f.job = { k: 'home' }; openDock(false); } });
   // The gate network's destination list lives on the trade ship's bridge and nowhere else.
   if (colonies.length > 1) {
     const here = colonies.slice().sort((a, b) => apart(a, s) - apart(b, s))[0];
@@ -2426,6 +3172,7 @@ function startCargo() {
 function stepCargo(h) {
   const c = cargo, s = ship;
   if (!c) return;
+  if (c.freeTow) { stepFreeTow(c, h); return; }
   if (c.dead) { cargo = null; return; }
   if (s.state === 'wreck' && c.phase !== 'leave') { c.phase = 'leave'; c.pt = 0; c.tow = false; }
   if (c.phase === 'jump') {
@@ -2677,9 +3424,9 @@ function startGrow(p) {
 }
 function addColony(p) {
   if (p.developed) return;
-  p.developed = true; p.gateA = Math.random() * TAU;
+  p.developed = true; p.gateA = Math.random() * TAU; p.lvl = p.lvl || 1;
   colonies.push(p);
-  if (trader) { syncEscorts(); syncFleet(); }
+  if (traderBuilt) { syncEscorts(); syncFleet(); }
   if (colonies.length === 2) computer('c_gate');
 }
 function gatePos(p) {
@@ -2710,7 +3457,7 @@ function capturePlanet() {
 function stepHeat(h) {
   const s = ship;
   inHeat = 0;
-  if (s.state === 'wreck' || !s.alive) return;
+  if (s.state === 'wreck' || !s.alive || (cargo && cargo.tow) || s.aboard) return;
   for (const p of active) {
     if (!p.heatR) continue;
     const d = Math.hypot(s.x - p.x, s.y - p.y);
@@ -2876,6 +3623,27 @@ function drawEmpire() {
     const q = 26 / 318; ctx.translate(0, 11); ctx.scale(q, q); ctx.translate(0, -326); drawShipArt(ctx, 'whole');
     ctx.restore();
   }
+  // Three green health cells above the trade ship, the tanker and every defense ship.
+  const kh = Math.max(1, 18 / (46 * z)), up = { x: Math.sin(cam.rot), y: -Math.cos(cam.rot) };
+  const cells = (c, lift) => {
+    if (!c || c.dead) return;
+    const n = Math.ceil(clamp(c.hull, 0, 1) * 3 - 1e-6);
+    ctx.save(); ctx.translate(c.x + up.x * lift, c.y + up.y * lift); ctx.rotate(cam.rot); ctx.scale(1 / z, 1 / z);
+    for (let i = 0; i < 3; i++) {
+      fillRR(ctx, 'rgba(10,14,22,.6)', -16 + i * 11, -3.5, 10, 7, 2);
+      if (i < n) fillRR(ctx, '#5fe07a', -15 + i * 11, -2.5, 8, 5, 1.5);
+    }
+    ctx.restore();
+  };
+  if (flagship && !flagship.dead) {
+    const F = flagship, kf = Math.max(.5, 40 / (300 * z));
+    ctx.save(); ctx.translate(F.x, F.y); ctx.rotate(F.ang + Math.PI / 2); ctx.scale(kf, kf); drawFlagshipArt(ctx, flagLook(F), F.thrust); ctx.restore();
+    if (t - F.flash < .6) fillDisc(ctx, 'rgba(216,251,255,' + (1 - (t - F.flash) / .6) + ')', F.x, F.y, 120 + (t - F.flash) * 260);
+    cells(F, 170 * kf + 12 / z);
+  }
+  if (trader && !trader.away) cells(trader, 40 * kh + 12 / z);
+  for (const f of fleet) if (f.role === 'tanker') cells(f, 40 * kh + 12 / z);
+  for (const e of escorts) cells(e, 16 * k + 10 / z);
   ctx.lineCap = 'round';
   for (const r of rocks) {
     const sp = Math.hypot(r.vx, r.vy) || 1, ux = r.vx / sp, uy = r.vy / sp, size = Math.max(r.r, 2 / z);
@@ -2893,7 +3661,7 @@ function drawEmpire() {
 }
 
 // ---------- SOS, cargo tow, distress calls ----------
-function canSOS() { const s = ship; return mode === 'play' && s.state === 'flying' && s.alive && s.fuel <= 0 && !paused && !sosState && !cargo && t >= sosReady; }
+function canSOS() { const s = ship; return mode === 'play' && s.state === 'flying' && s.alive && !s.aboard && (s.fuel <= 0 || s.o2 < .2) && !paused && !sosState && !cargo && t >= sosReady && !canCallCourier() && !fleet.some(f => f.job && f.job.k === 'supply'); }
 function sendSOS() {
   if (!canSOS()) return;
   sosState = { at: t + CFG.sosDelay[0] + Math.random() * (CFG.sosDelay[1] - CFG.sosDelay[0]) };
@@ -2906,6 +3674,7 @@ function stepSOS() {
   if (s.state !== 'flying' || !s.alive) return;
   const foe = active.find(p => p.pop === 'hostile' && !p.launched && Math.hypot(p.x - s.x, p.y - s.y) < CFG.sosHostileRange);
   if (foe) { foe.scanned = true; launchEnemies(foe, true); computer('c_sos_hostile'); }
+  if (trader && !trader.away && !trader.dead && apart(trader, s) < 4000) { startFreeTow(); return; }
   if (Math.random() < CFG.cargoChance) startCargo();
   else if (!foe) computer('c_sos_none');
 }
@@ -2979,7 +3748,8 @@ function stepBuild(p, h) {
   if (p.bases.length < CFG.basesNeeded) { computer('c_base_' + p.bases.length); return; }
   if (p.stock.ore <= 0 || p.stock.o2 <= 0) { p.barren = true; computer('c_not_suitable'); return; }
   // Once a trade network exists, new worlds simply join it.
-  if (trader) { p.hint = false; computer('c_developed'); addColony(p); return; }
+  // A mission in progress also means the first colony already exists: no second ending, and the mission carries on.
+  if (trader || mission || colonies.some(c => !c.barren)) { p.hint = false; computer('c_developed'); addColony(p); return; }
   s.won = true;
   computer('c_base_3');
   Sound.line('c_base_3').then(() => playEnding(p));
@@ -3497,7 +4267,7 @@ function applyLang() {
   document.title = tr('title');
   const map = [['#title h1', 'title'], ['#title p', 'tagline'], ['#howL', 'howL'], ['#howLd', 'howLd'], ['#howR', 'howR'], ['#howRd', 'howRd'], ['#howB', 'howB'], ['#howBd', 'howBd'], ['#launch', 'board'],
     ['#rFuel label', 'fuel'], ['#rHull label', 'hull'], ['#rSpd span', 'spd'], ['#rAlt span', 'alt'], ['#rOre span', 'ore'], ['#zones div:nth-child(1)', 'holdL'], ['#zones div:nth-child(2)', 'holdR'],
-    ['#sos', 'sos'], ['#dock', 'dock'], ['#capture', 'capture'], ['#talk', 'talk'], ['#loot', 'loot'], ['#courier', 'courier'], ['#exit', 'exit'], ['#skip', 'skip'], ['#again', 'again'], ['.stats span:nth-child(1)', 'survived'], ['.stats span:nth-child(3)', 'farthest'], ['.stats span:nth-child(5)', 'landings'],
+    ['#sos .lbl', 'sos'], ['#dock .lbl', 'dock'], ['#capture .lbl', 'capture'], ['#talk .lbl', 'talk'], ['#loot .lbl', 'loot'], ['#courier .lbl', 'courier'], ['#exit .lbl', 'exit'], ['#build .lbl', 'build'], ['#mapBtn .lbl', 'mapBtn'], ['#callCourier .lbl', 'callCourier'], ['#mapTitle', 'mapBtn'], ['#mapClose .lbl', 'mapClose'], ['#skip', 'skip'], ['#again', 'again'], ['.stats span:nth-child(1)', 'survived'], ['.stats span:nth-child(3)', 'farthest'], ['.stats span:nth-child(5)', 'landings'],
     ['#setTitle', 'settings'], ['#lblLang', 'language'], ['#lblSound', 'sound'], ['#lblVibe', 'vibration'], ['#lblPc', 'pc'], ['#lblKeyL', 'keyL'], ['#lblKeyR', 'keyR'], ['#lblKeyB', 'keyB'], ['#setNote', 'setNote'], ['#setDone', 'done']];
   for (const [sel, key] of map) { const el = document.querySelector(sel); if (el) el.textContent = tr(key); }
   renderSettings();
@@ -3551,6 +4321,12 @@ $('build').addEventListener('click', buildBase);
 $('talk').addEventListener('click', talkToTraveler);
 $('loot').addEventListener('click', lootGrave);
 $('courier').addEventListener('click', sendCourier);
+$('callCourier').addEventListener('click', callCourier);
+$('board').addEventListener('click', toggleBoard);
+$('mapBtn').addEventListener('click', () => { Sound.sfx('ui'); openMap(); });
+$('mapClose').addEventListener('click', () => { Sound.sfx('ui'); closeMap(); });
+$('mapC').addEventListener('pointerdown', mapTap);
+for (const [id, ic] of [['capture', 'capture'], ['dock', 'dock'], ['sos', 'sos'], ['build', 'build'], ['talk', 'talk'], ['loot', 'loot'], ['courier', 'courier'], ['mapBtn', 'map'], ['callCourier', 'courier'], ['board', 'dock'], ['exit', 'exit'], ['mapClose', 'back']]) $(id).insertAdjacentHTML('afterbegin', ICON[ic]);
 $('again').addEventListener('click', e => {
   e.stopPropagation();
   $('end').classList.remove('on');
@@ -3597,7 +4373,10 @@ const stars = [];
 function updateCam(dt) {
   if (mode === 'title') { cam.x = home.x; cam.y = home.y; cam.z = titleZoom(); return; }
   const s = ship, f = 1 - Math.exp(-dt * (t < 2 ? 3 : 11));
-  cam.x += (s.x - cam.x) * f; cam.y += (s.y - cam.y) * f;
+  // Out of the ship, the camera follows the pilot.
+  let fx = s.x, fy = s.y;
+  if (s.crew && s.on) { const p = s.on, r = p.R + height(p, s.crew.a) + 7; fx = p.x + Math.cos(s.crew.a) * r; fy = p.y + Math.sin(s.crew.a) * r; }
+  cam.x += (fx - cam.x) * f; cam.y += (fy - cam.y) * f;
   const n = nearestSurface(s.x, s.y);
   const scale = vmin / 390;
   const cap = (s.crew || s.skullT ? 2.7 : 1.7) * scale;
@@ -3607,7 +4386,7 @@ function updateCam(dt) {
   if (n.p) {
     const reach = n.p.R * 1.2 + 220, inf = clamp(1 - n.alt / reach, 0, 1);
     if (inf > 0) {
-      const a = Math.atan2(s.y - n.p.y, s.x - n.p.x) + Math.PI / 2;
+      const a = Math.atan2(fy - n.p.y, fx - n.p.x) + Math.PI / 2;
       cam.rot += angDiff(a, cam.rot) * (1 - Math.exp(-dt * 3.2 * inf));
     }
   }
@@ -3729,7 +4508,7 @@ function shipLook(s) {
 
 function drawShip() {
   const s = ship;
-  if (s.state === 'wreck') return;
+  if (s.state === 'wreck' || s.aboard) return;
   const k = shipScale(), look = shipLook(s);
   ctx.save(); ctx.translate(s.x, s.y); ctx.rotate(s.ang + Math.PI / 2); ctx.scale(k, k);
   if (s.thrust) {
@@ -3745,7 +4524,7 @@ function drawShip() {
   }
   const q = 26 / 318;
   ctx.translate(0, 11); ctx.scale(q, q); ctx.translate(0, -326);
-  drawShipArt(ctx, look);
+  drawShipArt(ctx, look, s.up);
   ctx.restore();
 }
 
@@ -3853,7 +4632,7 @@ function drawMarkers() {
     const hint = !!p.hint;
     const hot = !!p.heatR, gateway = !!p.developed && colonies.length > 1;
     let kind = hint ? 'hint' : hot ? 'heat' : useO2 ? 'o2' : useFuel ? 'fuel' : q ? 'pop' : gateway ? 'gate' : 'plain';
-    if (limit[kind] >= 3 || (kind === 'plain' && p.orbit)) continue;
+    if (limit[kind] >= (hasUp('scanner') ? 5 : 3) || (kind === 'plain' && p.orbit)) continue;
     limit[kind]++;
     const big = kind !== 'plain', color = hint ? COL.hintArrow : hot ? '#ff7a30' : useO2 ? COL.o2Arrow : useFuel ? COL.fuelArrow : q ? COL.popArrow : gateway ? COL.flame : COL.plainArrow, glyph = hint ? '!' : hot ? '*' : q ? '?' : gateway ? 'G' : null;
     const onScreen = o.sx > -rpx && o.sx < W + rpx && o.sy > -rpx && o.sy < H + rpx;
@@ -3911,7 +4690,7 @@ function render() {
   ctx.rotate(-cam.rot); ctx.scale(cam.z, cam.z); ctx.translate(-cam.x, -cam.y);
   drawBodies(rad);
   drawRings(rad);
-  if (mode === 'play' && ship.alive) drawTrajectory();
+  if (mode === 'play' && ship.alive && !ship.aboard) drawTrajectory();
   drawRobots();
   drawParticles();
   drawColonyAndTravelers();
@@ -3961,7 +4740,17 @@ function hud() {
   gravity(s.x, s.y, t, g);
   const spd = $('rSpd');
   spd.querySelector('b').textContent = Math.round(v);
-  $('rAlt').querySelector('b').textContent = Math.max(0, Math.round(n.alt - CFG.foot));
+  // Where the nearest world fit for a colony lies, as seen on screen.
+  let best = null, bd = Infinity;
+  for (const p of active) {
+    if (!p.atmo || p.pop || p.developed || p.barren || !colonyReady(p, CFG.basesNeeded - (p.bases ? p.bases.length : 0))) continue;
+    const d = Math.hypot(p.x - s.x, p.y - s.y);
+    if (d < bd) { bd = d; best = p; }
+  }
+  const ha = $('homeArrow');
+  ha.style.visibility = best ? 'visible' : 'hidden';
+  if (best) ha.style.transform = 'rotate(' + (Math.atan2(best.y - s.y, best.x - s.x) - cam.rot) + 'rad)';
+  $('rAlt').querySelector('b').textContent = best ? Math.max(0, Math.round(bd - best.R)) : '—';
   $('rG').querySelector('b').textContent = Math.hypot(g.x, g.y).toFixed(1);
   $('rOre').querySelector('b').textContent = Math.floor(s.cargo);
   $('exit').classList.toggle('on', canExit() && !paused);
@@ -3972,7 +4761,11 @@ function hud() {
   $('sos').classList.toggle('on', canSOS());
   $('dock').classList.toggle('on', canDock());
   $('capture').classList.toggle('on', !!captureTarget());
-  if (s.on) $('build').textContent = tr('build') + ' ' + ((s.on.bases ? s.on.bases.length : 0) + 1) + '/' + CFG.basesNeeded;
+  if (s.on) $('build').querySelector('.cnt').textContent = ((s.on.bases ? s.on.bases.length : 0) + 1) + '/' + CFG.basesNeeded;
+  $('mapBtn').classList.toggle('on', canMap());
+  $('callCourier').classList.toggle('on', canCallCourier());
+  $('board').classList.toggle('on', canBoard());
+  $('board').querySelector('.lbl').textContent = tr(s.aboard ? 'leave' : 'board');
   let grade = '';
   if (s.state === 'flying' && n.alt < 320 && rx * (s.x - n.p.x) + ry * (s.y - n.p.y) < 0) {
     const a = Math.atan2(s.y - n.p.y, s.x - n.p.x), sev = severity(v, Math.abs(angDiff(s.ang, upAngle(n.p, a))));
@@ -3984,7 +4777,9 @@ function hud() {
   let st = '';
   if (s.state !== 'wreck' && s.alive) {
     const onHull = robots.some(r => r.on);
-    if (s.build) st = tr('stBuild', { n: (s.on.bases ? s.on.bases.length : 0) + 1, m: CFG.basesNeeded });
+    if (s.aboard) st = tr('stAboard');
+    else if (fleet.some(f => f.job && f.job.k === 'supply')) st = tr('stSupply');
+    else if (s.build) st = tr('stBuild', { n: (s.on.bases ? s.on.bases.length : 0) + 1, m: CFG.basesNeeded });
     else if (inHeat > 0) st = tr('stMelt');
     else if (cargo && cargo.tow) st = tr('stTow');
     else if (sosState) st = tr('stSos');
@@ -4002,13 +4797,14 @@ function hud() {
     else if (mission && mission.phase === 'return') st = tr('stEarth');
     else if (fleet.some(f => f.role === 'courier' && f.job && f.job.k === 'help')) st = tr('stCourier');
     else if (distress) st = tr('stHelp');
+    else if (conquest && conquestTarget) st = tr('stConquest', { s: conquestTarget.name });
     else if (s.state === 'landed') st = tr('stLanded');
   }
   $('status').textContent = st;
 
   // Planet readout: on the ground, or once inside its belt.
   let focus = s.state === 'landed' ? s.on : null;
-  if (!focus && n.p && Math.hypot(s.x - n.p.x, s.y - n.p.y) < n.p.belt) focus = n.p;
+  if (!focus && n.p && Math.hypot(s.x - n.p.x, s.y - n.p.y) < n.p.belt * (hasUp('scanner') ? 3 : 1)) focus = n.p;
   const info = $('info');
   info.classList.toggle('on', !!focus && s.state !== 'wreck' && s.alive);
   if (focus) {
@@ -4044,7 +4840,7 @@ function frame(now) {
     if (q.life <= 0) particles.splice(i, 1);
   }
   if (mode === 'cine' && cine) { cine.t += dt; cine.draw(cine.t); }
-  else { updateCam(dt); render(); }
+  else { updateCam(dt); render(); if (mapOpen) drawMap(); }
   requestAnimationFrame(frame);
 }
 
@@ -4062,7 +4858,7 @@ window.perigee = {
   baseSpot, planSpots, clearance, findClear, CFG, step, begin, finishCine, buildBase, canBuild, canTalk, talkToTraveler, colonyReady, playEnding, Sound, findRumor, startPlay, held, height, upAngle, gravity, isWater, enemies, bolts, robots, shipLook, drawShipArt, drawCrewArt, drawAlienShipArt, crewHeight, launchEnemies, touchdown, canExit, exitShip, drawPlanetArt,
   get rescue() { return rescue; }, get paused() { return paused; },
   travelers, drones, SPEC, makeCraft, fly, hurt, botKey, approachKey, orbitKey, meetKey, landSite, orbitSlot, orbitBase, putInOrbit, spawnTraveler, stepTravelers, updateFleetBody, syncFleet, syncEscorts, stepEnemies, pickFoe,
-  loadGraves, placeGraves, recordGrave, announceGrave, canLoot, lootGrave, canCourier, sendCourier, courierShip, openTravelerDialog, talkTarget, startRescue, startCargo, closeDialog, botLandable, refreshActive, bodyVel, severity, fullAccel, craftAccel, nearestSurface,
+  loadGraves, placeGraves, recordGrave, announceGrave, canLoot, lootGrave, canCourier, sendCourier, courierShip, openTravelerDialog, talkTarget, startRescue, startCargo, closeDialog, botLandable, hud, updateCam, cam, factions, spawnFactions, stepStrategy, buildFlagship, canBuildFlagship, toggleBoard, canBoard, canCallCourier, callCourier, startFreeTow, drawFlagshipArt, upgradeColony, escortCap, get flagship() { return flagship; }, get mapSel() { return mapSel; }, set mapSel(v) { mapSel = v; }, renderMapPanel, fleetOre, repairFleet, askRole, stepConquest, get conquest() { return conquest; }, set conquest(v) { conquest = v; }, get conquestTarget() { return conquestTarget; }, get roleAsked() { return roleAsked; }, refreshActive, bodyVel, severity, fullAccel, craftAccel, nearestSurface,
   get ship() { return ship; }, get home() { return home; }, get homeworld() { return homeworld; }, get active() { return active; },
   get t() { return t; }, get mode() { return mode; }, get stats() { return stats; }, get deathT() { return deathT; }
 };
